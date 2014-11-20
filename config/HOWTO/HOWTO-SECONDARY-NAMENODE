@@ -1,0 +1,20 @@
+apt-get install hadoop-hdfs-secondarynamenode
+
+# secondary is farm03 op oude cluster
+
+Add the following property to the hdfs-site.xml file:
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>ctit048.ewi.utwente.nl:50070</value>
+    <description>    The address and the base port on which the dfs NameNode Web UI will listen.
+    </description>
+  </property>
+  <property>
+     <name>dfs.namenode.checkpoint.dir</name>
+     <value>/local/hadoop/dfs/checkpoints</value>
+  </property>
+
+
+mkdir /local/hadoop/dfs/checkpoints
+chown -R hdfs /local/hadoop/dfs/checkpoints
+/etc/init.d/hadoop-hdfs-secondarynamenode restart 

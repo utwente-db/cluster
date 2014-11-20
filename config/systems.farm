@@ -1,0 +1,11 @@
+System	Classes
+------	-------
+farm01	basic datanode yarn-nodemanager kafka storm_supervisor
+farm02	basic 				namenode  yarn-resourcemanager zookeeper_server storm_nimbus
+farm03	basic datanode yarn-nodemanager	secondary_namenode kafka storm_supervisor
+farm04	basic datanode yarn-nodemanager kafka storm_supervisor
+farm05	basic datanode yarn-nodemanager kafka storm_supervisor
+farm06	basic datanode yarn-nodemanager kafka storm_supervisor
+farm07	basic datanode yarn-nodemanager kafka storm_supervisor
+farm08	basic datanode yarn-nodemanager kafka storm_supervisor
+farm09	basic

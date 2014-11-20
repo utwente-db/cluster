@@ -1,50 +1,50 @@
 System	Classes
 ------	-------
-ctit001	basic datanode yarn-nodemanager
-ctit002	basic datanode yarn-nodemanager
-ctit003	basic datanode yarn-nodemanager
-ctit004	basic datanode yarn-nodemanager
-ctit005	basic datanode yarn-nodemanager
-ctit006	basic datanode yarn-nodemanager
-ctit007	basic datanode yarn-nodemanager
-ctit008	basic datanode yarn-nodemanager
-ctit009	basic datanode yarn-nodemanager
-ctit010	basic datanode yarn-nodemanager
-ctit011	basic datanode yarn-nodemanager
-ctit012	basic datanode yarn-nodemanager
-ctit013	basic datanode yarn-nodemanager
-ctit014	basic datanode yarn-nodemanager
-ctit015	basic datanode yarn-nodemanager
-ctit016	basic datanode yarn-nodemanager
-ctit017	basic datanode yarn-nodemanager
-ctit018	basic datanode yarn-nodemanager
-ctit019	basic datanode yarn-nodemanager
-ctit010	basic datanode yarn-nodemanager
-ctit021	basic datanode yarn-nodemanager
-ctit022	basic datanode yarn-nodemanager
-ctit023	basic datanode yarn-nodemanager
-ctit024	basic datanode yarn-nodemanager
-ctit025	basic datanode yarn-nodemanager
-ctit026	basic datanode yarn-nodemanager
-ctit027	basic datanode yarn-nodemanager
-ctit028	basic datanode yarn-nodemanager
-ctit029	basic datanode yarn-nodemanager
-ctit030	basic datanode yarn-nodemanager
-ctit031	basic datanode yarn-nodemanager
-ctit032	basic datanode yarn-nodemanager
-ctit033	basic datanode yarn-nodemanager
-ctit034	basic datanode yarn-nodemanager
-ctit035	basic datanode yarn-nodemanager
-ctit036	basic datanode yarn-nodemanager
-ctit037	basic datanode yarn-nodemanager
-ctit038	basic datanode yarn-nodemanager
-ctit039	basic datanode yarn-nodemanager
-ctit040	basic datanode yarn-nodemanager
-ctit041	basic datanode yarn-nodemanager
-ctit042	basic datanode yarn-nodemanager
-ctit043	basic datanode yarn-nodemanager
-ctit044	basic datanode yarn-nodemanager
-ctit045	basic datanode yarn-nodemanager
-ctit046	basic datanode yarn-nodemanager
-ctit047	basic datanode yarn-nodemanager	secondary_namenode
-ctit048	basic 				namenode  yarn-resourcemanager zookeeper_server
+ctit001	basic datanode yarn-nodemanager hbase_common 
+ctit002	basic datanode yarn-nodemanager hbase_common 
+ctit003	basic datanode yarn-nodemanager hbase_common 
+ctit004	basic datanode yarn-nodemanager hbase_common 
+ctit005	basic datanode yarn-nodemanager hbase_common 
+ctit006	basic datanode yarn-nodemanager hbase_common 
+ctit007	basic datanode yarn-nodemanager hbase_common 
+ctit008	basic datanode yarn-nodemanager hbase_common 
+ctit009	basic datanode yarn-nodemanager hbase_common 
+ctit010	basic datanode yarn-nodemanager hbase_common 
+ctit011	basic datanode yarn-nodemanager hbase_common 
+ctit012	basic datanode yarn-nodemanager hbase_common 
+ctit013	basic datanode yarn-nodemanager hbase_common 
+ctit014	basic datanode yarn-nodemanager hbase_common 
+ctit015	basic datanode yarn-nodemanager hbase_common 
+ctit016	basic datanode yarn-nodemanager hbase_common 
+ctit017	basic datanode yarn-nodemanager hbase_common 
+ctit018	basic datanode yarn-nodemanager hbase_common 
+ctit019	basic datanode yarn-nodemanager hbase_common 
+ctit010	basic datanode yarn-nodemanager hbase_common 
+ctit021	basic datanode yarn-nodemanager hbase_common 
+ctit022	basic datanode yarn-nodemanager hbase_common 
+ctit023	basic datanode yarn-nodemanager hbase_common 
+ctit024	basic datanode yarn-nodemanager hbase_common 
+ctit025	basic datanode yarn-nodemanager hbase_common 
+ctit026	basic datanode yarn-nodemanager hbase_common 
+ctit027	basic datanode yarn-nodemanager hbase_common 
+ctit028	basic datanode yarn-nodemanager hbase_common 
+ctit029	basic datanode yarn-nodemanager hbase_common 
+ctit030	basic datanode yarn-nodemanager hbase_common 
+ctit031	basic datanode yarn-nodemanager hbase_common 
+ctit032	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit033	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit034	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit035	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit036	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit037	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit038	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit039	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit040	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit041	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit042	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit043	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit044	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit045	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit046	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit047	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor secondary_namenode
+ctit048	basic 				namenode  yarn-resourcemanager zookeeper_server hbase_common hbase_master storm_nimbus 

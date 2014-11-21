@@ -31,7 +31,7 @@ ctit028	basic datanode yarn-nodemanager hbase_common
 ctit029	basic datanode yarn-nodemanager hbase_common 
 ctit030	basic datanode yarn-nodemanager hbase_common 
 ctit031	basic datanode yarn-nodemanager hbase_common 
-ctit032	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
+ctit032	basic datanode yarn-nodemanager hbase_common
 ctit033	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
 ctit034	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
 ctit035	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor

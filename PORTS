@@ -1,0 +1,42 @@
+see http://blog.cloudera.com/blog/2009/08/hadoop-default-ports-quick-reference/
+
+== Inter-Server == 
+Service                 Port      Comment / Config parameter name
+HDFS
+Namenode	              8020	    fs.default.name
+Datanode	              50010	    dfs.datanode.address (data transfer)
+Datanode	              50020	    dfs.datanode.ipc.address	IPC (metadata)
+                                  
+Zookeeper               2181      (2888 / 3888 for communication between zookeeper servers)
+                                  
+HBase                             
+HMaster                 60000     
+RegionServer            60020     
+                                  
+Kafak                             
+Broker                  9092      
+                                  
+Storm                             
+Nimbus                  6627      
+Supervisor              6700-6703
+                                  
+== Public ==                      
+Service                 Port      Comment / Config parameter name
+HDFS	                            
+Namenode	              50070	    dfs.http.address
+Datanodes	              50075	    dfs.datanode.http.address
+Secondarynamenode	      50090	    dfs.secondary.http.address
+                                  
+Map-Reduce                            
+Resource Manager WebUI  8088      
+Resource Manager        8032      For application submission
+NodeManager Web UI      50060     yarn.nodemanager.webapp.address
+//MR	Jobracker	        50030	    mapred.job.tracker.http.address
+//Tasktrackers	        50060	    mapred.task.tracker.http.address
+                        
+Hbase
+HMaster                 60010
+Region Server           60030
+
+Storm
+StormUI                 8080

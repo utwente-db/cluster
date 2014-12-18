@@ -1,0 +1,2 @@
+alias kafka-topics.sh='kafka-topics.sh —zookeeper ctit048.ewi.utwente'
+export PATH=$PATH:/local/storm/bin:/local/kafka/bin

@@ -20,8 +20,8 @@ Storm
 Nimbus                  6627      
 Supervisor              6700-6703
                                   
-== Public ==                      
-Service                 Port      Comment / Config parameter name
+== Service ==                     Should be available to the outside
+Service                 Port      
 HDFS	                            
 Namenode	              50070	    dfs.http.address
 Datanodes	              50075	    dfs.datanode.http.address
@@ -40,3 +40,14 @@ Region Server           60030
 
 Storm
 StormUI                 8080
+
+Order of starting services
+HDFS
+MapReduce
+YARN
+ZooKeeper
+HBase
+//Hue
+//Oozie
+//Impala
+//Flume

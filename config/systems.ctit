@@ -48,3 +48,6 @@ ctit045	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka st
 ctit046	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor
 ctit047	basic datanode yarn-nodemanager hbase_common hbase_regionserver kafka storm_supervisor secondary_namenode
 ctit048	basic 				namenode  yarn-resourcemanager zookeeper_server hbase_common hbase_master storm_nimbus 
+
+ctithead1 basic hbase_basic storm_basic kafka_basic pig_basic
+ctithead2 basic hbase_basic storm_basic kafka_basic pig_basic

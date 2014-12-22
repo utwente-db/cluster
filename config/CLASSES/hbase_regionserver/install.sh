@@ -1,6 +1,5 @@
-sudo apt-get install hbase-regionserver
+base class hbase_basic
 
-place config/hbase-site.xml under /etc/hbase/conf/
-replace farmname with ctit048 for the new cluster
+sudo apt-get install hbase-regionserver
 
 sudo service hbase-regionserver start

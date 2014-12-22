@@ -17,6 +17,8 @@ update-alternatives --display java
 # set system wide JAVA HOME
 cat ./JAVA_HOME_SET >> /etc/profile
 cat ./JAVA_HOME_SET >> /etc/bash.bashrc
+cat ./PATH_AND_ALIASES >> /etc/bash.bashrc
+cat ./PATH_AND_ALIASES >> /etc/profile
 
 #rehash
 apt-get --yes install curl
@@ -31,3 +33,12 @@ apt-get --yes install hadoop-client
 
 # now copy the config files for hadoop to the correct location
 cp ./DEFAULT-CONFIG-FILES/* /etc/hadoop/conf/
+
+
+#
+# New additions 18.12.2014
+#
+
+# Maven
+sudo apt-get install maven
+

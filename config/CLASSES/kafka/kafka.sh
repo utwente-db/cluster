@@ -1,14 +1,16 @@
-cd /local
-wget http://www.eng.lsu.edu/mirrors/apache/kafka/0.8.1.1/kafka_2.8.0-0.8.1.1.tgz
-tar xvzp -f kafka_2.8.0-0.8.1.1.tgz
-mv kafka_2.8.0-0.8.1.1 kafka
-cd kafka
-sudo bash
+require kafka_basic
+require supervisor
+
+# Create directory where real data is preduced
 mkdir -p /local/kafka/logs
 chown -R hdfs /local/kafka
 
-PLACE config
+# supervisor config files
+PLACE config/kafka_supervisor.conf IN /etc/supervisor/conf.d
 
-# To start the service... (has to be replaced with a watch dog call)
-bin/kafka-server-start.sh -daemon config/server.properties	
+# reload configuration file
+service supervisor restart
+
+# (re-) start all remaining service
+supervisorctl start all
 

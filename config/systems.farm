@@ -8,4 +8,4 @@ farm05	basic datanode yarn-nodemanager kafka storm_supervisor
 farm06	basic datanode yarn-nodemanager kafka storm_supervisor
 farm07	basic datanode yarn-nodemanager kafka storm_supervisor
 farm08	basic datanode yarn-nodemanager kafka storm_supervisor
-farm09	basic
+farm09	basic hbase_basic pig_basic storm_basic kafka_basic

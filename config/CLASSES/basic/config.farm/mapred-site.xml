@@ -17,10 +17,10 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-	<property>
- 		<name>mapreduce.framework.name</name>
- 		<value>yarn</value>
-	</property>
+        <property>
+                <name>mapreduce.framework.name</name>
+                <value>yarn</value>
+        </property>
         <property>
                 <name>mapred.job.tracker</name>
                 <value>farmname.ewi.utwente.nl:9001</value>
@@ -35,8 +35,13 @@
                 <name>mapred.local.dir</name>
                 <value>/local/hadoop/mapred/local</value>
         </property>
-	<property>
-    		<name>yarn.app.mapreduce.am.staging-dir</name>
-    		<value>/user</value>
-	</property>
+        <property>
+                 <name>yarn.app.mapreduce.am.staging-dir</name>
+                 <value>/user</value>
+        </property>
+        <property>
+                 <name>mapred.reduce.tasks</name>
+                 <value>7</value>
+                 <description>Defaults number of reduce tasks. Can be overwritten with job.setNumReduceTasks(4);</description>
+        </property>
 </configuration>

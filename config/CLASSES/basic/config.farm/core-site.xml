@@ -20,7 +20,7 @@
 <configuration>
        <property>
                 <name>fs.default.name</name>
-                <value>hdfs://farmname.ewi.utwente.nl:9000</value>
+                <value>hdfs://farmname.ewi.utwente.nl</value>
                 <description>URI of NameNode.</description>
         </property>
         <property>

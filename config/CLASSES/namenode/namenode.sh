@@ -3,7 +3,7 @@
 # badic should be installed before this
 
 #NAMENODE, PRIMARY SERVER
-apt-get --yes install hadoop-hdfs-namenode
+apt-get --yes install hadoop-hdfs-namenode=2.3.0+cdh5.1.2+816-1.cdh5.1.2.p0.3~precise-cdh5.1.2
 
 # FOR FIRST SETUP DO:
 su hdfs

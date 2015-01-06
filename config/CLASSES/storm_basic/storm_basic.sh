@@ -3,7 +3,7 @@ wget http://ftp.tudelft.nl/apache/incubator/storm/apache-storm-0.9.2-incubating/
 tar xvzp -f apache-storm-0.9.2-incubating.tar.gz
 rm apache-storm-0.9.2-incubating.tar.gz
 mv apache-storm-0.9.2-incubating /usr/lib/storm
-chown -R hdfs /var/lib/storm
+chown -R hdfs /usr/lib/storm
 
 mkdir -p /local/storm/data
 chown -R hdfs /local/storm

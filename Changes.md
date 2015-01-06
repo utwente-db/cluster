@@ -1,3 +1,21 @@
+== 06th January 2015 ==
+
+systems.ctit: hbase_common => hbase_basic
+
+supervisior: moved config/supervisord.conf to config/supervisor.conf and adapted the install
+             to copying to /etc/supervisor/, producing a link from /etc/supervisor.conf and
+						 pointing the init.d script to it
+
+basic: apt-get preferences to always prefer packages coming from cloudera
+
+storm_nimbus: adapted path in storm_nimubs_supervisor.conf
+
+storm_basic: adapted path to storm
+
+storm_supervisor: removed unnecessary placement of configfile
+
+basic,datanode,namenode: added specific version number 2.3.0 to the apt-get install commands
+
 == 18th December 2014 ==
 
 CLASSES: 

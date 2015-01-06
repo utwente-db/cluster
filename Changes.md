@@ -6,7 +6,7 @@ supervisior: moved config/supervisord.conf to config/supervisor.conf and adapted
              to copying to /etc/supervisor/, producing a link from /etc/supervisor.conf and
 						 pointing the init.d script to it
 
-basic: apt-get preferences to always prefer packages coming from cloudera
+basic: apt-get preferences to always prefer packages coming from cloudera, this should install 
 
 storm_nimbus: adapted path in storm_nimubs_supervisor.conf
 

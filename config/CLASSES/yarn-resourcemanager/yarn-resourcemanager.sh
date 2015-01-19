@@ -7,7 +7,6 @@ apt-get --yes install hadoop-yarn-resourcemanager
 
 # FOR FIRST SETUP DO:
 su hdfs
-[
 hadoop fs -mkdir -p /var/log/hadoop-yarn
 hadoop fs -chown yarn:mapred /var/log/hadoop-yarn
 hadoop fs -ls -R /

@@ -8,9 +8,7 @@ apt-get --yes install hadoop-hdfs-datanode=2.3.0+cdh5.1.2+816-1.cdh5.1.2.p0.3~pr
 #fix
 chown -R hdfs /var/log/hadoop-hdfs
 
-mkdir /local/hadoop
-mkdir /local/hadoop/dfs/
-mkdir /local/hadoop/dfs/data
+mkdir -p /local/hadoop/dfs/data
 chown -R hdfs /local/hadoop/dfs/
 
 /etc/init.d/hadoop-hdfs-datanode restart

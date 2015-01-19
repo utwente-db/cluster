@@ -1,4 +1,4 @@
-apt-get --yes install zookeeper_server=
+apt-get --yes install zookeeper-server
 
 PLACE config/zoo.cfg under /etc/zookeeper/conf/
 

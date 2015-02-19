@@ -1,3 +1,13 @@
+== 19th Feburary 2015 ==
+
+Corrected config/systems.farm to include hbase
+
+Removed slf4j library from classpath in hadoop.env to prevent warning messages
+
+Added creation of dummy directory for kafka
+
+Some cosmetic changes see changes from 19 January.
+
 == 06th January 2015 ==
 
 systems.ctit: hbase_common => hbase_basic

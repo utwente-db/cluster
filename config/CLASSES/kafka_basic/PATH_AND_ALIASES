@@ -1,2 +1,2 @@
 export PATH=$PATH:/usr/lib/kafka/bin
-alias kafka-topics.sh='kafka-topics.sh —zookeeper ctit048.ewi.utwente'
+alias kafka-topics.sh='kafka-topics.sh —zookeeper $CENTRAL'

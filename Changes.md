@@ -1,3 +1,11 @@
+== 29th April 2015 ==
+
+Added installation of history server to yarn-resource-manager.sh
+
+Added configuration for history server to basic/config.*/mapred-site.xml
+
+Specified the exact cloudera version in basic/CLOUDERA.LIST
+
 == 19th Feburary 2015 ==
 
 Corrected config/systems.farm to include hbase

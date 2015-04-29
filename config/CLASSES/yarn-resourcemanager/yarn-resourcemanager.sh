@@ -6,7 +6,7 @@
 apt-get --yes install hadoop-yarn-resourcemanager
 apt-get --yes install hadoop-mapreduce-historyserver
 
-#put all hadoop packages on-hold
+#put all hadoop packages on-hold - not used for now
 #for p in $(dpkg --list | grep hadoop | cut -d " " -f 3); do echo "$p hold" | dpkg --set-selections; done
 
 # FOR FIRST SETUP DO:

@@ -9,7 +9,7 @@ echo "------------------"
 echo "Ls form hdfs"
 hdfs dfs -ls /
 echo "Write to hdfs /tmp"
-hdfs dfs -put /etc/passwd $IN
+hdfs dfs -put testfile $IN
 
 echo "Read from hdfs"
 hdfs dfs -cat $IN | head -n 2
@@ -26,7 +26,7 @@ hadoop com.sun.tools.javac.Main WordCount.java
 jar cf wc.jar WordCount*.class
 OUT=/tmp/fileout-$RANDOM
 hadoop jar wc.jar WordCount $IN $OUT
-hdfs dfs -cat $OUT/part-r-00000
+hdfs dfs -cat $OUT/part-r-00000 | tail -n 2
 echo "should output two lines"
 hdfs dfs -rm -r $OUT
 hdfs dfs -rm $IN
@@ -79,3 +79,10 @@ rm -rf storm
 echo ""
 echo "Press Enter"
 read A
+
+#echo "Kafka"
+#topic=test-$RANDOM
+#kafka-topics.sh -create -topic $topic -partitions 2 -replication-factor 2
+#kafka-console-consumer.sh -topic test123 --zookeeper farmname.ewi.utwente.nl 
+#kafka-console-producer.sh -topic test123 --broker-list  farm01.ewi.utwente.nl:9092
+

@@ -7,4 +7,4 @@
 
 # The java implementation to use.  Required.
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
-export HADOOP_CLASSPATH=$HADOOP_CLASSPATH
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/usr/share/java/slf4j-simple.jar

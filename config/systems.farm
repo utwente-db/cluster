@@ -1,11 +1,11 @@
 System	Classes
 ------	-------
-farm01	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm02	basic namenode yarn-resourcemanager zookeeper_server storm_nimbus hbase_master hbase_basic
-farm03	basic datanode yarn-nodemanager	secondary_namenode kafka storm_supervisor hbase_regionserver hbase_basic
-farm04	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm05	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm06	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm07	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm08	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic
-farm09	basic hbase_basic pig_basic storm_basic kafka_basic
+farm01	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm02	basic namenode yarn-resourcemanager zookeeper_server storm_nimbus hbase_master hbase_basic spark_basic
+farm03	basic datanode yarn-nodemanager	secondary_namenode kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm04	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm05	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm06	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm07	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm08	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_master spark_basic
+farm09	basic hbase_basic pig_basic storm_basic kafka_basic spark_basic

@@ -1,6 +1,6 @@
 System	Classes
 ------	-------
-farm01	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker spark_worker
+farm01	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker
 farm02	basic namenode yarn-resourcemanager zookeeper_server storm_nimbus hbase_master hbase_basic spark_master
 farm03	basic datanode yarn-nodemanager	secondary_namenode kafka storm_supervisor hbase_regionserver hbase_basic spark_worker
 farm04	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_worker

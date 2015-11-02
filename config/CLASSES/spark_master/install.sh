@@ -10,5 +10,5 @@ sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory
 
 # do once
 hdfs dfs -mkdir -p /user/spark/share/lib
-hdfs dfs -put /usr/lib/spark/lib/spark-assembly_*.jar /user/spark/share/lib/spark-assembly.jar
+hdfs dfs -put /usr/lib/spark/lib/spark-assembly.jar /user/spark/share/lib/spark-assembly.jar
 

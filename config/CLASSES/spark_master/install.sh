@@ -1,6 +1,6 @@
 require spark_basic
 
-apt-get install spark-master spark-history-server
+# remove previously installed spark-master spark-history-server
 
 # log history
 sudo -u hdfs hadoop fs -mkdir /user/spark 
@@ -9,6 +9,9 @@ sudo -u hdfs hadoop fs -chown -R spark:spark /user/spark
 sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory
 
 # do once
+export HADOOP_USER_NAME=hdfs
 hdfs dfs -mkdir -p /user/spark/share/lib
+hdfs dfs -rm /user/spark/share/lib/spark-assembly.jar
 hdfs dfs -put /usr/lib/spark/lib/spark-assembly.jar /user/spark/share/lib/spark-assembly.jar
+unset HADOOP_USER_NAME
 

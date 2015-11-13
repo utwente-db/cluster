@@ -18,5 +18,8 @@ hadoop fs -ls -R /
 hadoop fs -mkdir -p /user/history
 hadoop fs -chmod -R 1777 /user/history
 hadoop fs -chown mapred:hadoop /user/history
+hadoop fs -mkdir -p /var/log/hadoop-yarn/apps
+hadoop fs -chmod 0777 /var/log/hadoop-yarn/apps
 
 /etc/init.d/hadoop-yarn-resourcemanager restart
+

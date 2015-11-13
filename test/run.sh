@@ -9,8 +9,8 @@ for f in $(ls test*sh | sort); do
   read -p "Perform test? [y/n]" -n 1 -r
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    #. $f
     echo "Perfomring $f"
+    . $f
   fi
 done
 

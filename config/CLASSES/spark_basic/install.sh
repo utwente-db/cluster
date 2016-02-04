@@ -1,12 +1,18 @@
 # remove previously installed spark-core and spark python
 apt-get install scala
 
+remove old version
+rm -rf /usr/lib/spark
+
 download newest version of spark
-wget http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz
+VERSION=1.6.0
+wget http://d3kbcqa49mib13.cloudfront.net/spark-$VERSION-bin-hadoop2.6.tgz
 
-tar xvzp -f spark-1.5.1-bin-hadoop2.6.tgz
+tar xvzp -f spark-$VERSION-bin-hadoop2.6.tgz
 
-mv spark-1.5.1-bin-hadoop2.6.tgz /usr/lib/spark
+mv spark-$VERSION-bin-hadoop2.6.tgz /usr/lib/spark
+
+rm spark-$VERSION-bin-hadoop2.6.tgz
 
 # copy configuraiton setting DISPATCHER to either farmname or ctit048
 cp config/spark-defaults.conf /usr/lib/spark/conf/

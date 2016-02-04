@@ -37,5 +37,12 @@
      <name>dfs.namenode.checkpoint.dir</name>
      <value>/local/hadoop/dfs/checkpoints</value>
   </property>
-
+  <!-- text file to list the data nodes that should be decommissioned. 
+  See, e.g. 
+  http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.3.7/bk_hdp1-system-admin-guide/content/admin_decommission-slave-nodes-2-1.html
+  -->
+  <property>
+    <name>dfs.hosts.exclude</name>
+    <value>/etc/hadoop/conf/dfs.exclude.txt</value>
+  </property>
 </configuration>

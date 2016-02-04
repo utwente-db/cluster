@@ -76,5 +76,14 @@
         $HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,
         $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
      </value>
+  </property>  
+  <!-- text file to list the node manager that should be decommissioned. 
+  See, e.g. 
+  http://pivotalhd-210.docs.pivotal.io/doc/2100/webhelp/topics/DecommissioningtheYARNNodeManager.html
+  -->
+  <property>
+    <name>yarn.resourcemanager.nodes.exclude-path</name>
+    <value>/etc/hadoop/conf/yarn.exclude.txt</value>
   </property>
+
 </configuration>

@@ -11,6 +11,6 @@ mv spark-1.5.1-bin-hadoop2.6.tgz /usr/lib/spark
 # copy configuraiton setting DISPATCHER to either farmname or ctit048
 cp config/spark-defaults.conf /usr/lib/spark/conf/
 
-# add global variable to every node
+# add global variable to bashrc
 export HADOOP_CONF_DIR=/etc/hadoop/conf
 export PATH=/usr/lib/spark/bin:$PATH

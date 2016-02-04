@@ -1,3 +1,10 @@
+== 4th Feburary 2016 ==
+* [f1c426e] Update to new spark version
+
+* [8c08500] Added logging to hdfs to spark configuration.
+
+* [3b75aea] Added exclude files for nodes to be decommissioned, see basic/config*/{dfs,yarn}.exclude.txt
+
 == 29th April 2015 ==
 
 Added installation of history server to yarn-resource-manager.sh

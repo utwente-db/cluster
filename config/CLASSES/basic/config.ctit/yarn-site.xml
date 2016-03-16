@@ -20,7 +20,7 @@
 <configuration>
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>ctit048.ewi.utwente.nl</value>
+    <value>$CENTRALNODE.ewi.utwente.nl</value>
   </property>
   
   <property>
@@ -84,6 +84,53 @@
   <property>
     <name>yarn.resourcemanager.nodes.exclude-path</name>
     <value>/etc/hadoop/conf/yarn.exclude.txt</value>
+  </property>
+
+  <!-- ResourceManager security configs -->
+  <property>
+    <name>yarn.resourcemanager.keytab</name>
+    <value>/etc/hadoop/conf/yarn.keytab</value>	<!-- path to the YARN keytab -->
+  </property>
+  <property>
+    <name>yarn.resourcemanager.principal</name>	
+    <value>yarn/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+
+  <!-- NodeManager security configs -->
+  <property>
+    <name>yarn.nodemanager.keytab</name>
+    <value>/etc/hadoop/conf/yarn.keytab</value>	<!-- path to the YARN keytab -->
+  </property>
+  <property>
+    <name>yarn.nodemanager.principal</name>	
+    <value>yarn/_HOST@FARM.UTWENTE.NL</value>
+  </property>	
+  <property>
+    <name>yarn.nodemanager.container-executor.class</name>	
+    <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
+  </property>	
+  <property>
+    <name>yarn.nodemanager.linux-container-executor.group</name>
+    <value>yarn</value>
+  </property>
+
+  <!-- Enable SSL -->
+  <property>
+    <name>yarn.http.policy</name>
+    <value>HTTPS_ONLY</value>
+  </property>
+  
+  <property>
+    <name>yarn.log.server.url</name>
+    <value>https://$CENTRALNODE.ewi.utwente.nl:19888/jobhistory/logs</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.https.address</name>
+    <value>$CENTRALNODE.ewi.utwente.nl:8088</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.webapp.https.address</name>
+    <value>0.0.0.0:8042</value>
   </property>
 
 </configuration>

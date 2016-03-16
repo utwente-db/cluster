@@ -48,8 +48,6 @@ apt-get --yes install zookeeper=3.4.5+cdh5.3.0+81-1.cdh5.3.0.p0.36~precise-cdh5.
 # now copy the config files for hadoop to the correct location
 cp ./DEFAULT-CONFIG-FILES/* /etc/hadoop/conf/
 
-
-
 # Maven
 sudo apt-get install maven
 

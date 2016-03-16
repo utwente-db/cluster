@@ -27,10 +27,47 @@
 </property>
 <property>
   <name>hbase.rootdir</name>
-  <value>hdfs://farmname.ewi.utwente.nl:8020/hbase</value>
+  <value>hdfs://$CENTRALNODE.ewi.utwente.nl:8020/hbase</value>
 </property>
 <property>
   <name>hbase.zookeeper.quorum</name>
-  <value>farmname.ewi.utwente.nl</value>
+  <value>$CENTRALNODE.ewi.utwente.nl</value>
+</property>
+<!-- security relevant configuration --> 
+<property>
+    <name>hbase.security.authentication</name>
+    <value>kerberos</value> 
+</property>  
+<property>
+  <name>hbase.regionserver.kerberos.principal</name> 
+  <value>hbase/_HOST@$REALM</value> 
+</property> 
+
+<property> 
+  <name>hbase.regionserver.keytab.file</name> 
+  <value>/etc/hbase/conf/hbase.keytab</value> 
+</property>
+
+<property> 
+  <name>hbase.master.kerberos.principal</name> 
+  <value>hbase/_HOST@$REALM</value> 
+</property> 
+
+<property> 
+<name>hbase.master.keytab.file</name> 
+<value>/etc/hbase/conf/hbase.keytab</value> 
+</property>
+
+<property>
+     <name>hbase.security.authorization</name>
+     <value>true</value>
+</property>
+<property>
+     <name>hbase.coprocessor.master.classes</name>
+     <value>org.apache.hadoop.hbase.security.access.AccessController</value>
+</property>
+<property>
+     <name>hbase.coprocessor.region.classes</name>
+     <value>org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.AccessController</value>
 </property>
 </configuration>

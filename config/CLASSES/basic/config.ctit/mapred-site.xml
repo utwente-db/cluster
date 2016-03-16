@@ -23,7 +23,7 @@
         </property>
         <property>
                 <name>mapred.job.tracker</name>
-                <value>ctit048.ewi.utwente.nl:9001</value>
+                <value>$CENTRALNODE.ewi.utwente.nl:9001</value>
                 <description>Host or IP and port of JobTracker: host:port pair.</description>
         </property>
         <property>
@@ -44,14 +44,31 @@
                  <value>45</value>
                  <description>Defaults number of reduce tasks. Can be overwritten with job.setNumReduceTasks(4);</description>
         </property>
+
         <property>
                  <name>mapreduce.jobhistory.address</name>
-                 <value>ctit048.ewi.utwente.nl:10020</value>
+                 <value>$CENTRALNODE.ewi.utwente.nl:10020</value>
                  <description>The address of the JobHistory Server host:port</description>
         </property>
         <property>
                  <name>mapreduce.jobhistory.webapp.address</name>
-                 <value>ctit048.ewi.utwente.nl:19888</value>
+                 <value>$CENTRALNODE.ewi.utwente.nl:19888</value>
                  <description>The address of the JobHistory Server web application host:port</description>
+        </property>
+        
+        <property>
+                 <name>mapreduce.jobhistory.http.policy</name>
+                 <value>HTTPS_ONLY</value>
+                 <description></description>
+        </property>
+        
+        <!-- MapReduce Job History Server security configs -->
+        <property>
+          <name>mapreduce.jobhistory.keytab</name>
+          <value>/etc/hadoop/conf/mapred.keytab</value>	<!-- path to the MAPRED keytab for the Job History Server -->
+        </property>	
+        <property>
+          <name>mapreduce.jobhistory.principal</name>	
+          <value>mapred/_HOST@YOUR-REALM.COM</value>
         </property>
 </configuration>

@@ -24,11 +24,11 @@
   </property>
   <property>
      <name>dfs.data.dir</name>
-     <value>/local/hadoop/dfs/data</value>
+     <value>file://local/hadoop/dfs/data</value>
   </property>
   <property>
     <name>dfs.namenode.http-address</name>
-    <value>ctit048.ewi.utwente.nl:50070</value>
+    <value>$CENTRALNODE.ewi.utwente.nl:50070</value>
     <description>
     The address and the base port on which the dfs NameNode Web UI will listen.
     </description>
@@ -44,5 +44,87 @@
   <property>
     <name>dfs.hosts.exclude</name>
     <value>/etc/hadoop/conf/dfs.exclude.txt</value>
+  </property>
+  
+  <!-- General HDFS security config -->
+  <property>
+    <name>dfs.block.access.token.enable</name>
+    <value>true</value>
+  </property>
+
+  <!-- NameNode security config -->
+  <property>
+    <name>dfs.namenode.keytab.file</name>
+    <value>/etc/hadoop/conf/hdfs.keytab</value> <!-- path to the HDFS keytab -->
+  </property>
+  <property>
+    <name>dfs.namenode.kerberos.principal</name>
+    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+  <property>
+    <name>dfs.namenode.kerberos.internal.spnego.principal</name>
+    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+
+  <!-- Secondary NameNode security config -->
+  <property>
+    <name>dfs.secondary.namenode.keytab.file</name>
+    <value>/etc/hadoop/conf/hdfs.keytab</value> <!-- path to the HDFS keytab -->
+  </property>
+  <property>
+    <name>dfs.secondary.namenode.kerberos.principal</name>
+    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+  <property>
+    <name>dfs.secondary.namenode.kerberos.internal.spnego.principal</name>
+    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+
+  <!-- DataNode security config -->
+  <property>
+    <name>dfs.datanode.data.dir.perm</name>
+    <value>700</value> 
+  </property>
+  <property>
+    <name>dfs.datanode.address</name>
+    <value>0.0.0.0:1004</value>
+  </property>
+  <property>
+    <name>dfs.datanode.http.address</name>
+    <value>0.0.0.0:1006</value>
+  </property>
+  <property>
+    <name>dfs.datanode.keytab.file</name>
+    <value>/etc/hadoop/conf/hdfs.keytab</value> <!-- path to the HDFS keytab -->
+  </property>
+  <property>
+    <name>dfs.datanode.kerberos.principal</name>
+    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+
+  <!-- Web Authentication config -->
+  <property>
+    <name>dfs.web.authentication.kerberos.principal</name>
+    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+  </property>
+  
+  <property>
+  <name>dfs.http.policy</name>
+  <value>HTTPS_ONLY</value>
+  </property>
+  
+  <property>
+    <name>dfs.datanode.https.address</name>
+    <value>$HOST.ewi.utwente.nl:50475</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.https-address</name>
+    <value>0.0.0.0:50070</value>
+  </property>
+
+  <property>
+  <name>dfs.namenode.acls.enabled</name>
+  <value>true</value>
   </property>
 </configuration>

@@ -20,7 +20,7 @@
 <configuration>
        <property>
                 <name>fs.default.name</name>
-                <value>hdfs://ctit048.ewi.utwente.nl</value>
+                <value>hdfs://$CENTRALNODE.ewi.utwente.nl</value>
                 <description>URI of NameNode.</description>
         </property>
         <property>
@@ -35,4 +35,81 @@
                 <name>io.file.buffer.size</name>
                 <value>131072</value>
         </property>
+        
+        <property>
+                <name>hadoop.security.authentication</name>
+                <value>kerberos</value> <!-- A value of "simple" would disable security. -->
+        </property>
+
+        <property>
+               <name>hadoop.security.authorization</name>
+               <value>true</value>
+        </property>
+        
+        
+        <!-- 
+          
+        -->
+        <property>
+               <name>hadoop.ssl.require.client.cert</name>
+                <value>false</value>
+        </property>
+        <property>
+                <name>hadoop.ssl.hostname.verifier</name>
+                <value>DEFAULT</value>
+        </property>
+        <property>
+                <name>hadoop.ssl.keystores.factory.class</name>
+                <value>org.apache.hadoop.security.ssl.FileBasedKeyStoresFactory</value>
+        </property>
+        <property>
+                <name>hadoop.ssl.server.conf</name>
+                <value>ssl-server.xml</value>
+        </property>
+        <property>
+                <name>hadoop.ssl.client.conf</name>
+                <value>ssl-client.xml</value>
+        </property>
+                
+                
+        <property>
+          <name>hadoop.security.auth_to_local</name>
+          <value>
+          RULE:[1:$1](.*)s/(.*)/$1/g
+          RULE:[2:$1](.*)s/(.*)/$1/g
+          DEFAULT
+          </value>
+        </property>
+        
+        <!-- 
+          
+          HTTP Authentification: https://hadoop.apache.org/docs/r2.5.2/hadoop-project-dist/hadoop-common/HttpAuthentication.html#Authentication_for_Hadoop_HTTP_web-consoles
+          <property>
+                  <name>hadoop.http.filter.initializers</name>
+                  <value>org.apache.hadoop.security.AuthenticationFilterInitializer</value>
+          </property>
+          
+          
+        <property>
+                <name>hadoop.http.authentication.type</name>
+                <value>kerberos</value>
+        </property>
+        <property>
+                <name>hadoop.http.authentication.cookie.domain</name>
+                <value>ewi.utwente.nl</value>
+        </property>
+        <property>
+                <name>hadoop.http.authentication.kerberos.principal</name>
+                <value>HTTP/$HOST.ewi.utwente.nl@$REALM</value>
+        </property>
+        <property>
+                <name>hadoop.http.authentication.kerberos.keytab</name>
+                <value>/etc/hadoop/conf/http.keytab</value>
+        </property>
+
+        <property>
+                <name>hadoop.http.authentication.simple.anonymous.allowed</name>
+                <value>false</value>
+        </property>
+                  -->
 </configuration>

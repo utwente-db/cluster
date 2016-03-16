@@ -14,7 +14,7 @@ echo "List directory '/' form hdfs"
 hdfs dfs -ls /
 echo ""
 echo "Create directory test under the user's home directory"
-hdfs dfs -mkidr test
+hdfs dfs -mkdir test
 echo ""
 echo "Remove directory test from the user's home directory"
 hdfs dfs -rm -r test

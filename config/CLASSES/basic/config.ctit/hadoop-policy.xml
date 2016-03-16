@@ -18,31 +18,17 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration>
-       <property>
-                <name>fs.default.name</name>
-                <value>hdfs://farmname.ewi.utwente.nl</value>
-                <description>URI of NameNode.</description>
-        </property>
-        <property>
-                <name>io.sort.factor</name>
-                <value>100</value>
-        </property>
-        <property>
-                <name>io.sort.mb</name>
-                <value>200</value>
-        </property>
-        <property>
-                <name>io.file.buffer.size</name>
-                <value>131072</value>
-        </property>
-        
-        <property>
-                <name>hadoop.security.authentication</name>
-                <value>kerberos</value> <!-- A value of "simple" would disable security. -->
-        </property>
+  <property>
+      <name>security.datanode.protocol.acl</name>
+      <value>*</value>
+      <description>ACL for DatanodeProtocol, which is used by datanodes to 
+      communicate with the namenode.</description>
+  </property>
 
-        <property>
-               <name>hadoop.security.authorization</name>
-               <value>true</value>
-        </property>
+  <property>
+      <name>security.inter.tracker.protocol.acl</name>
+      <value>*</value>
+      <description>ACL for InterTrackerProtocol, which is used by tasktrackers to 
+      communicate with the jobtracker.</description>
+  </property>       
 </configuration>

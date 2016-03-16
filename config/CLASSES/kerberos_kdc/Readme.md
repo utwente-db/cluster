@@ -9,49 +9,56 @@ export REALM=FARM.UTWENTE.NL
 export CENTRALNODE=farm02
 export HOST=farm02
 
-
-== Stop services =
-Stop services
-for x in `cd /etc/init.d ; ls hadoop-*` ; do service $x stop ; done
-for x in `cd /etc/init.d ; ls hbase-*` ; do service $x stop ; done
-
 # Installed java extension
-copy security jar file for strong encryption outside the USA
+By default java has restricted encryption strength. To copy security jar file for strong encryption outside the USA
 <On every node>
-unzip jce_policy-8.zip (currently on /home/dbeheer)
-cp {local_policy,US_export_policy}.jar $JAVA_HOME/jre/lib/security/
+  
+    cd ~dbeheer/jce_policy
+    cp */{local_policy,US_export_policy}.jar $JAVA_HOME/jre/lib/security/
 
-# Create KDC
-    #install software
+Note: keep jce_policy.zip at a save place.
+
+# KDC
+
+## Stop Hadoop services
+Stop services
+
+    for x in `cd /etc/init.d ; ls hadoop-*` ; do service $x stop ; done
+    for x in `cd /etc/init.d ; ls hbase-*` ; do service $x stop ; done
+
+## Setup KDC
+Install software
+
     apt-get install krb5-kdc krb5-admin-server
-    # set startup parameters
+
+Set startup parameters
+
     echo 'DAEMON_ARGS="-r $REALM"' >> /etc/default/krb5-kdc
     echo 'DAEMON_ARGS="-r $REALM"' >> /etc/default/krb5-admin-server
 
 Adapt Configuration
-    for f in ~dbeheer/config/CLASSES/kerberos_kdc_/etc/*; do 
-    	F=/etc/krb5kdc/$(basename $f); 
-    	if [ "$f" -nt "$F" ]; then
-    		echo $f $F; 
-    		cat $f | perl -pe 's/\$(\w+)/$ENV{$1}/g' > $F
-    done
 
-## Create relam
+    python scripts/shadow.py config/CLASSES/kerberos_kdc/config /
+
+Create Realm
+
     kdb5_util create -s -r $REALM
+    <enter realm password by hand> 
+    
+## Start services
+
     /etc/init.d/krb5-kdc start || true
     /etc/init.d/krb5-admin-server start ||true
 
-# Create copy of kerberos configuration file
-To make $REALM the default default
-    sed -e "s@default_realm = AD.UTWENTE.NL@default_realm = $REALM@g" /etc/krb5.conf > /etc/krb5.farm.conf
-
-
 ## Create Trust relationship with AD.UTWENTE.NL
+Enter trust relationship with AD domain.
+
     kinit kadmin/admin@$REALM
     kadmin.local -r $REALM -q "addprinc -e "aes256-cts:normal" krbtgt/$REALM@AD.UTWENTE.NL"
     <enter trust password twice>
 
-## Create Principles and Export Keytabs
+## Create Principals and Export Keytabs
+First create principals and export keytabs
 <on kdc server>
     kinit -r $REALM -p kadmin/admin@$REALM
     <enter new password>
@@ -68,6 +75,7 @@ To make $REALM the default default
     kadmin.local -r $REALM -q "xst -norandkey -k $HOST.mapred.keytab mapred/$HOST@$REALM HTTP/$HOST@$REALM"
     kadmin.local -r $REALM -q "xst -norandkey -k $HOST.yarn.keytab mapred/$HOST@$REALM yarn/$HOST@$REALM HTTP/$HOST@$REALM"
 
+Move every keytab to the correct location and change access permissions
 <on each server>
     mv $HOST.hdfs.keytab /etc/hadoop/conf/hdfs.keytab
     mv $HOST.mapred.keytab /etc/hadoop/conf/mapred.keytab
@@ -77,37 +85,48 @@ To make $REALM the default default
     chown yarn:hadoop /etc/hadoop/conf/yarn.keytab
     chmod 400 /etc/hadoop/conf/*.keytab
 
-## Administration 
+## HDFS Administration 
 Exit safe mode
+
     # first become hdfs
     kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$CENTRALNODE.ewi.utwente.nl@FARM.UTWENTE.NL
     hdfs dfsadmin -savemode leave
 
 ## Install Configuration Files
+<on each datanode>
+  
     cat >> /etc/default/hadoop-hdfs-datanode <<EOF
     export HADOOP_SECURE_DN_USER=hdfs
     export HADOOP_SECURE_DN_PID_DIR=/var/lib/hadoop-hdfs
     export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop-hdfs
     export JSVC_HOME=/usr/lib/bigtop-utils/
     EOF 
-
-## Set correct PID file for secure datenodes
-<on each datanode>
+    
+Adapt PID file for datanode
+    
     sed -i.bak -e 's@PIDFILE=".*"@PIDFILE="/var/lib/hadoop-hdfs/hadoop_secure_dn.pid"@g' /etc/init.d/hadoop-hdfs-datanode
 
-Note:
-before, starting a datanode would succeed but the controlling script would return an error:
+Note: without chaning the PID file, starting a datanode would succeed but the controlling script would return an error:
 ```
 starting datanode, logging to /var/log/hadoop-hdfs/hadoop-hdfs-datanode-farm01.out
  * Failed to start Hadoop datanode. Return value: 3
-* Datanode doesn't start
+ * Datanode doesn't start
 ```
-This can be solved by the above sed command
+This can be solved by adapting the PID file.
+
+## Start Hadoop services
+Stop services
+    for x in `cd /etc/init.d ; ls hadoop-*` ; do service $x start ; done
+    for x in `cd /etc/init.d ; ls hbase-*` ; do service $x start ; done
 
 # HTTP Configuration
 
-## Create Certificate Signing Requests
+## References
+This script is mainly based on 
+
 https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infosphere.biginsights.admin.doc/doc/admin_ssl_hbase_mr_yarn_hdfs_web.html
+
+## Create Keys and Certificate Signing Requests
 
     echo "PASSWORD" > keypassword
     chmod 0400 keypassword
@@ -126,33 +145,27 @@ https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infos
     openssl pkcs12 -export -in $host.crt -passin file:keypassword -inkey $host.key -passout file:shortpass -name $host -out $host.p12
 
 ## Import into private keystore
-keytool -list -storepass:file shortpass -storetype pkcs12 -keystore $host.p12 
-keytool -importkeystore -srcstoretype pkcs12 -srcstorepass:file shortpass -srckeystore $host.p12 -alias $host -deststorepass:file keypassword  -destkeystore $host.jks
-rm $host.p12
+    keytool -list -storepass:file shortpass -storetype pkcs12 -keystore $host.p12 
+    keytool -importkeystore -srcstoretype pkcs12 -srcstorepass:file shortpass -srckeystore $host.p12 -alias $host -deststorepass:file keypassword  -destkeystore $host.jks
+    rm $host.p12
 
-keytool -export -alias $host -keystore $host.jks -rfc -storepass:file keypassword -file $host.cer
+    keytool -export -alias $host -keystore $host.jks -rfc -storepass:file keypassword -file $host.cer
 
 ## Import into trust stores
-keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $host.trust.jks
-keytool -list -storepass:file publicpass -v -keystore $host.trust.jks
+    keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $host.trust.jks
+    keytool -list -storepass:file publicpass -v -keystore $host.trust.jks
 
-keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $REALM.jks
-keytool -list -storepass:file publicpass -v -keystore $REALM.jks 
+    keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $REALM.jks
+    keytool -list -storepass:file publicpass -v -keystore $REALM.jks 
 
 ## Copy to configuration to actual configuraiton
-cp -a $REALM.jks /etc/hadoop/conf
-cp -a $host.jks /etc/hadoop/conf
-cp -a $host.trust.jks /etc/hadoop/conf
-cp -a $host.cer /etc/hadoop/conf
+    cp -a $REALM.jks /etc/hadoop/conf
+    cp -a $host.jks /etc/hadoop/conf
+    cp -a $host.trust.jks /etc/hadoop/conf
+    cp -a $host.cer /etc/hadoop/conf
 
-chmod 0440 /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
-chown -R yarn:hadoop /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
+    chmod 0440 /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
+    chown -R yarn:hadoop /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
 
 # Update hadoop configuration
-for f in ~dbeheer/config/CLASSES/basic/config.ctit/*; do 
-	F=/etc/hadoop/conf/$(basename $f); 
-	if [ "$f" -nt "$F" ]; then
-		echo $f $F; 
-		cat $f | perl -pe 's/\$(\w+)/$ENV{$1}/g' > $F
-done
-cat ~dbeheer/CLASSES/basic/config.ctit/hdfs-site.xml | perl -pe 's/\$(\w+)/$ENV{$1}/g' > /etc/hadoop/conf/hdfs-site.test
+    scripts/shadow.py ~dbeheer/config/CLASSES/basic/config.ctit/ /etc/hadoop/conf/; do 

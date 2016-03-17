@@ -1,5 +1,9 @@
-base class hbase_basic
+# HBase Regionserver
 
-sudo apt-get install hbase-regionserver
+## Installation
 
-sudo service hbase-regionserver start
+    base class hbase_basic
+
+    sudo apt-get install hbase-regionserver
+
+    sudo service hbase-regionserver start

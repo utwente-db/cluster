@@ -53,6 +53,9 @@
 ## Setup of HDFS Directory 
 On the first run do.
 
+    # become root
+    kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$CENTRALNODE.ewi.utwente.nl@FARM.UTWENTE.NL
+    
     hadoop fs -mkdir /tmp
     hadoop fs -chmod -R 1777 /tmp
     hadoop fs -mkdir -p /user/history

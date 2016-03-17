@@ -82,7 +82,7 @@ First create principals and export keytabs
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hdfs.keytab hdfs/$HOST@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.mapred.keytab mapred/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.yarn.keytab mapred/$FQN@$REALM yarn/$FQN@$REALM HTTP/$FQN@$REALM"
-      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.yarn.keytab hbase/$FQN@$REALM"
+      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab hbase/$FQN@$REALM"
     done
     
 ### Install Configuration Files

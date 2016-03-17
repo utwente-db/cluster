@@ -1,34 +1,27 @@
 # HBase Basic 
 
 ## References
-http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_security.html
-http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_authorization.html
+
+* http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_security.html
+* http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_authorization.html
 
 ## Variables
 
     export REALM=FARM.UTWENTE.NL
     export CENTRALNODE=farm02
     export HOST=farm02
+    # safe directory where files can be exchanged (see kerberos_kdc)
+    export SAFE=~dbeheer/safe
 
 ## Installation
 
     sudo apt-get install hbase
 
 ## Install Keytabs
-<on the kdc server>
-  
-    #login
-    kinit kadmin/admin@$REALM 
-    cd ~dbeheer
     
-    # Foreach master or regionserver do the following (adapt to CTIT)
-    for i in $(seq 1 9); do
-      FQN=$(printf "farm%02d.ewi.utwente.nl" $i)
-      kadmin.local -r $REALM -q "xst -k $FQN.hbase.keytab hbase/$FQN"
-    done
-
 <on each host (regionserver / master)>
   
+    cd $SAFE
     FQN=$(hostname).ewi.utwente.nl
     mv $FQN.hbase.keytab /etc/hbase/conf/hbase.keytab
     chown hbase:hadoop /etc/hbase/conf/*.keytab

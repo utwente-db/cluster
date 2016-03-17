@@ -1,3 +1,8 @@
+== References 
+https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.2/bk_installing_manually_book/content/configure_kerberos_for_storm.html
+https://github.com/apache/storm/tree/master/external/storm-hdfs
+
+== Installation
 cd /local
 wget http://ftp.tudelft.nl/apache/incubator/storm/apache-storm-0.9.2-incubating/apache-storm-0.9.2-incubating.tar.gz
 tar xvzp -f apache-storm-0.9.2-incubating.tar.gz

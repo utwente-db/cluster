@@ -1,11 +1,36 @@
-== 4th Feburary 2016 ==
+# March 17th 2016
+
+* Grouped server classes under software package (storm_nimbus => storm/nimbus etc)
+* Renamed all installations scripts to Readme.md 
+
+   As most of the scripts also contained text and weren't used as executable anyway, this seems to make sense.
+
+* Split basic into base (all the stuff all users need) and hdfs/basic (the basic installation for hdfs clients / servers)
+
+   This allows an easier grouping of services
+
+* Added Kerberos configuration under kerberos_kdc
+  
+* hdfs: 
+
+  * removed config.farm and renamed config.ctit to config
+    All services use now a single configuration directory
+   
+  * Make kerberos aware
+   
+* hbase: 
+
+  * Make kerberos aware
+
+
+# 4th Feburary 2016
 * [f1c426e] Update to new spark version
 
 * [8c08500] Added logging to hdfs to spark configuration.
 
 * [3b75aea] Added exclude files for nodes to be decommissioned, see basic/config*/{dfs,yarn}.exclude.txt
 
-== 29th April 2015 ==
+# 29th April 2015
 
 Added installation of history server to yarn-resource-manager.sh
 
@@ -13,7 +38,7 @@ Added configuration for history server to basic/config.*/mapred-site.xml
 
 Specified the exact cloudera version in basic/CLOUDERA.LIST
 
-== 19th Feburary 2015 ==
+# 19th Feburary 2015
 
 Corrected config/systems.farm to include hbase
 
@@ -23,7 +48,7 @@ Added creation of dummy directory for kafka
 
 Some cosmetic changes see changes from 19 January.
 
-== 06th January 2015 ==
+# 06th January 2015
 
 systems.ctit: hbase_common => hbase_basic
 
@@ -41,7 +66,7 @@ storm_supervisor: removed unnecessary placement of configfile
 
 basic,datanode,namenode: added specific version number 2.3.0 to the apt-get install commands
 
-== 18th December 2014 ==
+# 18th December 2014
 
 CLASSES: 
 

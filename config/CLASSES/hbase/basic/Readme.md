@@ -5,7 +5,6 @@ sudo apt-get install hbase
 http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_security.html
 http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_hbase_authorization.html
 
-
 = Variables
 export REALM=FARM.UTWENTE.NL
 export CENTRALNODE=farm02

@@ -31,6 +31,18 @@ Add Global Variables
 
     export HADOOP_CONF_DIR=/etc/hadoop/conf
     export PATH=/usr/lib/spark/bin:$PATH
+    
+## Configure Dynamic Resource Allocation in Yarn
+
+Copy schduler to Yarn Classpath
+
+    cp /usr/lib/spark/lib/spark-*-yarn-shuffle.jar /usr/lib/hadoop/lib/
+
+Add 
+
+copy the `config-yarn/yarn.site` from settings to `/etc/hadoop/conf/`    
+
+Restart the `ResourceManager` and all `NodeManagers`.
 
 ## Testing script
 

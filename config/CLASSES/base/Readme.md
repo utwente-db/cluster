@@ -1,6 +1,11 @@
 # Base Installation for All Servers
 
-## Install Basic App
+## Variables
+
+    # The REALM that the current computer should participate in
+    export REALM=FARM.UTWENTE.NL
+
+## Install Basic Applications
 
     apt-get --yes install csh
     apt-get --yes install software-properties-common
@@ -15,12 +20,31 @@
     echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
     apt-get --yes install oracle-jdk7-installer
     update-alternatives --display java
-
-
-## Set system wide JAVA HOME
+    
+    ## Set system wide JAVA HOME
 
     cat config/JAVA_HOME_SET >> /etc/profile
     cat config/JAVA_HOME_SET >> /etc/bash.bashrc
+
+## Install Java Security Extension
+
+Download the [Java Security Extension](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html)
+
+By default java has restricted encryption strength. Copy security jar file for strong encryption outside the USA
+<On every node>
+  
+    cd ~dbeheer/jce_policy
+    cp */{local_policy,US_export_policy}.jar $JAVA_HOME/jre/lib/security/
+
+Note: keep jce_policy.zip at a save place.
+
+## Kerberos Configuration
+
+Copy the two kerberos configuration files, one for clients putting AD.UTWENTE.NL as default realm and one for services, putting the FARM.UTWENTE.NL or CTIT.UTWENTE.NL as default. 
+
+    # Replace variable $REALM
+    cp config/krb5.conf /etc/krb5.conf
+    cp config/krb5.service.conf /etc/krb5.service.conf
 
 ## Add Cloudera Repository
 

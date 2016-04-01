@@ -1,38 +1,27 @@
-# Kerberos KDC
+# Kerberos KDC / HTTPS Certificates
 
 ## References
 Script created according to
-* https://help.ubuntu.com/community/Kerberos
-* http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_cdh5_install.html
-* https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infosphere.biginsights.admin.doc/doc/admin_ssl_hbase_mr_yarn_hdfs_web.html
+* [General Info on KDC / UBUNTU Site](https://help.ubuntu.com/community/Kerberos)
+* [Integration with hadoop: Cloudera Site](http://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_sg_cdh5_install.html)
+* [IBM Site]( https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infosphere.biginsights.admin.doc/doc/admin_ssl_hbase_mr_yarn_hdfs_web.html)
 
 ## Variables
 
+    # The REALM that should be configured 
     export REALM=FARM.UTWENTE.NL
+    # The central node that contains the namenode, resource manager etc
     export CENTRALNODE=farm02
+    # The current host
     export HOST=farm02
-    # safe directory where files can be exchanged
+    # a safe directory where files can be exchanged between the kdc host and the clients
     export SAFE=~dbeheer/safe
 
-## Installed java extension
-By default java has restricted encryption strength. To copy security jar file for strong encryption outside the USA
-<On every node>
-  
-    cd ~dbeheer/jce_policy
-    cp */{local_policy,US_export_policy}.jar $JAVA_HOME/jre/lib/security/
-
-Note: keep jce_policy.zip at a save place.
 
 ## Installation
 
-### Stop Hadoop services
-Stop services
-
-    for x in `cd /etc/init.d ; ls hadoop-*` ; do service $x stop ; done
-    for x in `cd /etc/init.d ; ls hbase-*` ; do service $x stop ; done
-
 ### Setup KDC
-Install software
+Install software packages required to run a kdc
 
     apt-get install krb5-kdc krb5-admin-server
 
@@ -40,7 +29,7 @@ Adapt Configuration
 
     python scripts/shadow.py config/CLASSES/kerberos_kdc/config /
 
-Create Realm
+Create Realm Database 
 
     kdb5_util create -s -r $REALM
     <enter realm password by hand> 
@@ -51,15 +40,19 @@ Start KDC Services
     /etc/init.d/krb5-admin-server start
 
 ### Create Trust Relationship with AD.UTWENTE.NL
-Enter trust relationship with AD domain.
+
+To create a trust relationship with AD domain:
 
     kinit kadmin/admin@$REALM
     kadmin.local -r $REALM -q "addprinc -e "aes256-cts:normal" krbtgt/$REALM@AD.UTWENTE.NL"
     <enter trust password twice>
 
+## Administration
 ### Create Principals and Export Keytabs
-First create principals and export keytabs
+
+Create principals and export keytabs
 <on kdc server>
+  
     mkdir $SAFE
     chmod 0700 $SAFE
   
@@ -67,7 +60,7 @@ First create principals and export keytabs
     <enter new password>
       
     # for each host 
-    # Foreach master or regionserver do the following 
+    # Foreach node do the following 
     for i in $(seq 1 9); do
       #adapt to CTIT
       FQN=$(printf "farm%02d.ewi.utwente.nl" $i)
@@ -84,40 +77,10 @@ First create principals and export keytabs
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.yarn.keytab mapred/$FQN@$REALM yarn/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab hbase/$FQN@$REALM"
     done
-    
-### Install Configuration Files
-<on each datanode>
-  
-    cat >> /etc/default/hadoop-hdfs-datanode <<EOF
-    export HADOOP_SECURE_DN_USER=hdfs
-    export HADOOP_SECURE_DN_PID_DIR=/var/lib/hadoop-hdfs
-    export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop-hdfs
-    export JSVC_HOME=/usr/lib/bigtop-utils/
-    EOF 
-    
-Adapt PID file for datanode
-    
-    sed -i.bak -e 's@PIDFILE=".*"@PIDFILE="/var/lib/hadoop-hdfs/hadoop_secure_dn.pid"@g' /etc/init.d/hadoop-hdfs-datanode
 
-Note: without changing the PID file, starting a datanode would succeed but the controlling script would return an error:
-```
-starting datanode, logging to /var/log/hadoop-hdfs/hadoop-hdfs-datanode-farm01.out
- * Failed to start Hadoop datanode. Return value: 3
- * Datanode doesn't start
-```
-This can be solved by adapting the PID file.
+### HTTPs Configuration
 
-### Start Hadoop services
-Stop services
-
-    for x in `cd /etc/init.d ; ls hadoop-*` ; do service $x start ; done
-    for x in `cd /etc/init.d ; ls hbase-*` ; do service $x start ; done
-
-
-## HTTPs Configuration
-
-
-### Create Keys and Certificate Signing Requests
+#### Create Keys and Certificate Signing Requests
 
     echo "PASSWORD" > keypassword
     chmod 0400 keypassword
@@ -131,9 +94,9 @@ Stop services
 
 .... submit certificate requests (*.csr) to ICTS and wait for certificate (*.zip)
 
-### Convert Obtained Certificates To Hadoop Compatible
+#### Convert Obtained Certificates To Hadoop Compatible
 
-Copy certificates into root directory of ~dbeheer:
+Once the certificates are signed by ICTS, copy them into $SAFE:
     
     cd $SAFE
     unzip ~dbeheer/$(hostname)_ewi_utwente_nl*.zip

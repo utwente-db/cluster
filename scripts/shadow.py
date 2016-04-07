@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+import string
 
 def main():
   src_dir, dst_dir = sys.argv[1:]
@@ -23,7 +24,8 @@ def main():
       print src_fn, dst_fn
       with open(src_fn) as f, open(dst_fn, 'w') as out:
         for line in f:
-          out.write(os.path.expandvars(line))
+          t = string.Template(line)
+          out.write(t.safe_substitute(os.environ))
         
 if __name__ == '__main__':
   main()

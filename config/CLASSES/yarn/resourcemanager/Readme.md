@@ -7,7 +7,9 @@ apt-get --yes install hadoop-yarn-resourcemanager
 apt-get --yes install hadoop-mapreduce-historyserver
 
 #put all hadoop packages on-hold - not used for now
-#for p in $(dpkg --list | grep hadoop | cut -d " " -f 3); do echo "$p hold" | dpkg --set-selections; done
+  
+    kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$HOST.ewi.utwente.nl@$REALM
+    #for p in $(dpkg --list | grep hadoop | cut -d " " -f 3); do echo "$p hold" | dpkg --set-selections; done
 
 # FOR FIRST SETUP DO:
 su hdfs
@@ -19,7 +21,7 @@ hadoop fs -mkdir -p /user/history
 hadoop fs -chmod -R 1777 /user/history
 hadoop fs -chown mapred:hadoop /user/history
 hadoop fs -mkdir -p /var/log/hadoop-yarn/apps
-hadoop fs -chmod 0777 /var/log/hadoop-yarn/apps
+hadoop fs -chmod 1777 /var/log/hadoop-yarn/apps
 
 /etc/init.d/hadoop-yarn-resourcemanager restart
 

@@ -7,4 +7,4 @@
 
 # The java implementation to use.  Required.
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
-export HADOOP_OPTS="$HADOOP_OPTS -Djava.security.krb5.conf=/etc/krb5.farm.conf"
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.security.krb5.conf=/etc/krb5.service.conf"

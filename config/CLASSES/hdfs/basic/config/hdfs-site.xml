@@ -59,11 +59,11 @@
   </property>
   <property>
     <name>dfs.namenode.kerberos.principal</name>
-    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+    <value>hdfs/_HOST@$REALM</value>
   </property>
   <property>
     <name>dfs.namenode.kerberos.internal.spnego.principal</name>
-    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+    <value>HTTP/_HOST@$REALM</value>
   </property>
 
   <!-- Secondary NameNode security config -->
@@ -73,11 +73,11 @@
   </property>
   <property>
     <name>dfs.secondary.namenode.kerberos.principal</name>
-    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+    <value>hdfs/_HOST@$REALM</value>
   </property>
   <property>
     <name>dfs.secondary.namenode.kerberos.internal.spnego.principal</name>
-    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+    <value>HTTP/_HOST@$REALM</value>
   </property>
 
   <!-- DataNode security config -->
@@ -99,13 +99,13 @@
   </property>
   <property>
     <name>dfs.datanode.kerberos.principal</name>
-    <value>hdfs/_HOST@FARM.UTWENTE.NL</value>
+    <value>hdfs/_HOST@$REALM</value>
   </property>
 
   <!-- Web Authentication config -->
   <property>
     <name>dfs.web.authentication.kerberos.principal</name>
-    <value>HTTP/_HOST@FARM.UTWENTE.NL</value>
+    <value>HTTP/_HOST@$REALM</value>
   </property>
   
   <property>

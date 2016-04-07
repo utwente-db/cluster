@@ -16,7 +16,7 @@
 
     apt-get --yes install hadoop-hdfs-namenode=2.3.0+cdh5.1.2+816-1.cdh5.1.2.p0.3~precise-cdh5.1.2
     
-    # name node data
+    # name node data directory
     mkdir -p /var/lib/hadoop-hdfs/cache/hdfs/dfs/name
     chown -R hdfs /var/lib/hadoop-hdfs
 
@@ -31,16 +31,24 @@
     chown yarn:hadoop /etc/hadoop/conf/yarn.keytab
     chmod 400 /etc/hadoop/conf/*.keytab
     
-    # Copy HTTPS to configuration
+    # Copy HTTPS keys to configuration
     cp -a $REALM.jks /etc/hadoop/conf
-    cp -a $host.jks /etc/hadoop/conf
-    cp -a $host.trust.jks /etc/hadoop/conf
-    cp -a $host.cer /etc/hadoop/conf
+    cp -a $FQN.jks /etc/hadoop/conf
+    cp -a $FQN.trust.jks /etc/hadoop/conf
+    cp -a $FQN.cer /etc/hadoop/conf
     chmod 0440 /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
     chown -R yarn:hadoop /etc/hadoop/conf/*jks /etc/hadoop/conf/*cer
 
+    # set permissions
+    chmod 0700 /etc/hadoop/conf/container-executor.cfg
+    chown root:yarn /etc/hadoop/conf/container-executor.cfg 
+    chmod 6050 /usr/lib/hadoop-yarn/bin/container-executor
+
     /etc/init.d/hadoop-hdfs-namenode restart
 
+## Administration
+
+### Format Filesystem 
     # first become hdfs
     kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$(hostname).ewi.utwente.nl@$REALM
     
@@ -50,18 +58,15 @@
     # to exit safe mode (uncomment if needed)
     hdfs dfsadmin -savemode leave
 
-## Setup of HDFS Directory 
+### Setup Essential Directories
+
 On the first run do.
 
     # become root
-    kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$CENTRALNODE.ewi.utwente.nl@FARM.UTWENTE.NL
+    kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$(hostname).ewi.utwente.nl@$REALM
     
     hadoop fs -mkdir /tmp
     hadoop fs -chmod -R 1777 /tmp
     hadoop fs -mkdir -p /user/history
     hadoop fs -chmod -R 1777 /user/history
     hadoop fs -chown mapred:hadoop /user/history
-
-
-## Update Configuration
-    scripts/shadow.py ~dbeheer/config/CLASSES/basic/config.ctit/ /etc/hadoop/conf/; do 

@@ -29,10 +29,10 @@
 
 ## Update  Configuration Files
 
-cat hbase-site.xml | perl -pe 's/\$(\w+)/$ENV{$1}/g' > /etc/hbase/conf/hbase-site.xml
-cat zk-jaas.conf | perl -pe 's/\$(\w+)/$ENV{$1}/g' > /etc/hbase/conf/zk-jaas.conf
-echo 'export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config=/etc/hbase/conf/zk-jaas.conf -Djava.security.krb5.conf=/etc/krb5.farm.conf"' >> /etc/hbase/conf/hbase-env.sh
-echo 'export HBASE_MANAGES_ZK=false' >> /etc/hbase/conf/hbase-env.sh
+    cat hbase-site.xml | perl -pe 's/\$(\w+)/$ENV{$1}/g' > /etc/hbase/conf/hbase-site.xml
+    cat zk-jaas.conf | perl -pe 's/\$(\w+)/$ENV{$1}/g' > /etc/hbase/conf/zk-jaas.conf
+    echo 'export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config=/etc/hbase/conf/zk-jaas.conf -Djava.security.krb5.conf=/etc/krb5.service.conf"' >> /etc/hbase/conf/hbase-env.sh
+    echo 'export HBASE_MANAGES_ZK=false' >> /etc/hbase/conf/hbase-env.sh
 
 #
-*Note changes in zookeeper/server / zoo.cfg*
+*Note the changes in zookeeper/server / zoo.cfg*

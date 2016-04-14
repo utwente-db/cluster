@@ -12,10 +12,10 @@ Remove previously installed spark-master spark-history-server
 
     # Become hdfs root
     kinit -kt /etc/hadoop/hdfs.keytab hdfs@$CENTRALNODE.ewi.utwente.nl/$REALM
-    sudo -u hdfs hdfs -mkdir /user/spark 
-    sudo -u hdfs hdfs fs -mkdir /user/spark/applicationHistory 
-    sudo -u hdfs hdfs fs -chown -R spark:spark /user/spark
-    sudo -u hdfs hdfs fs -chmod 1777 /user/spark/applicationHistory
+    hdfs -mkdir /user/spark 
+    hdfs fs -mkdir /user/spark/applicationHistory 
+    hdfs fs -chown -R spark:spark /user/spark
+    hdfs fs -chmod 1777 /user/spark/applicationHistory
 
 ## Upload job assembly
 <on central node>

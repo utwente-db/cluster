@@ -56,7 +56,7 @@
     # hdfs  namenode -format
     
     # to exit safe mode (uncomment if needed)
-    hdfs dfsadmin -savemode leave
+    hdfs dfsadmin -safemode leave
 
 ### Setup Essential Directories
 
@@ -65,8 +65,8 @@ On the first run do.
     # become root
     kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$(hostname).ewi.utwente.nl@$REALM
     
-    hadoop fs -mkdir /tmp
-    hadoop fs -chmod -R 1777 /tmp
-    hadoop fs -mkdir -p /user/history
-    hadoop fs -chmod -R 1777 /user/history
-    hadoop fs -chown mapred:hadoop /user/history
+    hdfs -mkdir /tmp
+    hdfs -chmod -R 1777 /tmp
+    hdfs -mkdir -p /user/history
+    hdfs -chmod -R 1777 /user/history
+    hdfs -chown mapred:hadoop /user/history

@@ -70,23 +70,30 @@ Create principals and export keytabs
       kadmin.local -r $REALM -q "addprinc -randkey yarn/$FQN@$REALM"
       kadmin.local -r $REALM -q "addprinc -randkey HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "addprinc -randkey hbase/$FQN@$REALM"
-
+      kadmin.local -r $REALM -q "addprinc -randkey zookeeper/$HOST@$REALM"
+      kadmin.local -r $REALM -q "addprinc -randkey hbase/$HOST@$REALM"
+      
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hdfs.keytab hdfs/$FQN@$REALM HTTP/$FQN@$REALM"
-      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hdfs.keytab hdfs/$HOST@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.mapred.keytab mapred/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.yarn.keytab mapred/$FQN@$REALM yarn/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab hbase/$FQN@$REALM"
+      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.zookeeper.keytab zookeeper/$HOST"
+      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab zookeeper/$HOST"
     done
 
 ### HTTPs Configuration
 
 #### Create Keys and Certificate Signing Requests
 
-    echo "PASSWORD" > keypassword
+    openssl rand -base64 32 > keypassword
     chmod 0400 keypassword
+  
     openssl rand -base64 32 > publicpass
+    
     openssl rand -base64 10 > shortpass
-    export KEYPASSWORD=$(cat /root/certificates/keypassword)
+    chmod 0400 shortpass publicpass
+    
+    # Create Keys
     for i in $(seq 1 9); do H=$(printf "farm%02d" $i); openssl genrsa -passout file:keypassword -out $H.ewi.utwente.nl.key 2048; done
     for i in $(seq 1 9); do H=$(printf "farm%02d" $i); openssl req -new -passin file:keypassword -sha256 -key $H.ewi.utwente.nl.key -out $H.ewi.utwente.nl.csr -subj "/C=NL/ST=OV/L=Enschede/O=University of Twente/OU=CTIT/CN=$H.ewi.utwente.nl"; done
     for i in $(seq 1 48); do H=$(printf "ctit%03d" $i); openssl genrsa -passout file:keypassword -out $H.ewi.utwente.nl.key 2048; done
@@ -99,26 +106,34 @@ Create principals and export keytabs
 Once the certificates are signed by ICTS, copy them into $SAFE:
     
     cd $SAFE
+    
     unzip ~dbeheer/$(hostname)_ewi_utwente_nl*.zip
     rm ~dbeheer/$(hostname)_ewi_utwente_nl*.zip
     cp $(hostname)_ewi_utwente_nl*/*p7b .
     rm -rf $(hostname)_ewi_utwente_nl_*
-    export host=$(hostname).ewi.utwente.nl
-    openssl pkcs7 -print_certs -in $host_ewi_utwente_nl.p7b -outform PEM -out $host.crt
-    openssl pkcs12 -export -in $host.crt -passin file:keypassword -inkey $host.key -passout file:shortpass -name $host -out $host.p12
+    
+    for i in $(seq 1 48); do
+      export HOST=$(printf "ctit%03d" $i)
+      #export HOST=$(printf "farm%02d" $i)
+      export host=$HOST.ewi.utwente.nl
+      echo Converting keys
+      openssl pkcs7 -print_certs -in ${HOST}_ewi_utwente_nl.p7b -outform PEM -out $host.crt
+      openssl pkcs12 -export -in $host.crt -passin file:keypassword -inkey $host.key -passout file:shortpass -name $host -out $host.p12
 
-    # Import into private keystore
+      echo Import into private keystore
+      keytool -list -storepass:file shortpass -storetype pkcs12 -keystore $host.p12 
+      keytool -importkeystore -srcstoretype pkcs12 -srcstorepass:file shortpass -srckeystore $host.p12 -alias $host -deststorepass:file keypassword  -destkeystore $host.jks
+      rm $host.p12 #remove intermediate file
 
-    keytool -list -storepass:file shortpass -storetype pkcs12 -keystore $host.p12 
-    keytool -importkeystore -srcstoretype pkcs12 -srcstorepass:file shortpass -srckeystore $host.p12 -alias $host -deststorepass:file keypassword  -destkeystore $host.jks
-    rm $host.p12
+      echo Export certificate
+      keytool -export -alias $host -keystore $host.jks -rfc -storepass:file keypassword -file $host.cer
 
-    keytool -export -alias $host -keystore $host.jks -rfc -storepass:file keypassword -file $host.cer
+      echo Import into trust stores
+      keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $host.trust.jks
+      # debugging keytool -list -storepass:file publicpass -keystore $host.trust.jks
 
-    # Import into trust stores
-    keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $host.trust.jks
-    keytool -list -storepass:file publicpass -v -keystore $host.trust.jks
-
-    keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $REALM.jks
-    keytool -list -storepass:file publicpass -v -keystore $REALM.jks 
+      echo Import into realm store
+      keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $REALM.jks
+      # debugging keytool -list -storepass:file publicpass -keystore $REALM.jks 
+    done
 

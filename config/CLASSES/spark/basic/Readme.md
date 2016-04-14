@@ -44,6 +44,12 @@ copy the `config-yarn/yarn.site` from settings to `/etc/hadoop/conf/`
 
 Restart the `ResourceManager` and all `NodeManagers`.
 
+    # on nodes of class yarn/resourcemanager
+    /etc/init.d/hadoop-yarn-resourcemanager restart
+    
+    # on nodes of class yarn/nodemanager
+    /etc/init.d/hadoop-yarn-nodemanager restart
+
 ## Testing script
 
 ./bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster --num-executors 3 --driver-memory 4g --executor-memory 2g --executor-cores 1  --queue thequeue lib/spark-examples*.jar 10

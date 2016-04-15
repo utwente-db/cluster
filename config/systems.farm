@@ -1,11 +1,11 @@
 System	Classes
 ------	-------
-farm01	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm02	basic namenode yarn-resourcemanager zookeeper_server storm_nimbus hbase_master hbase_basic spark_master
-farm03	basic datanode yarn-nodemanager	secondary_namenode kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm04	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm05	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm06	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm07	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm08	basic datanode yarn-nodemanager kafka storm_supervisor hbase_regionserver hbase_basic spark_basic
-farm09	basic hbase_basic pig_basic storm_basic kafka_basic spark_basic
+farm01	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm02	base hdfs/namenode                         yarn/resourcemanager zookeeper/server              storm/nimbus     hbase/master       spark/master
+farm03	base hdfs/datanode hdfs/secondary_namenode yarn/nodemanager	zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm04	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm05	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm06	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm07	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm08	base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+farm09	base hdfs/basic                                                 zookeeper/basic  kafka/basic                                      spark/basic pig/basic storm/basic 

@@ -1,53 +1,52 @@
-System	Classes
-------	-------
-ctit001	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit002	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit003	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit004	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit005	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit006	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit007	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit008	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit009	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit010	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit011	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit012	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit013	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit014	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit015	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit016	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit017	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit018	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit019	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit010	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit021	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit022	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit023	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit024	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit025	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit026	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit027	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit028	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit029	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit030	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit031	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit032	basic datanode yarn-nodemanager hbase_basic spark_basic
-ctit033	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit034	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit035	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit036	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit037	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit038	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit039	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit040	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit041	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit042	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit043	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit044	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit045	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit046	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor spark_basic
-ctit047	basic datanode yarn-nodemanager hbase_basic hbase_regionserver kafka storm_supervisor secondary_namenode spark_basic
-ctit048	basic namenode  yarn-resourcemanager zookeeper_server hbase_basic hbase_master storm_nimbus spark_master
-
-ctithead1 basic hbase_basic storm_basic kafka_basic pig_basic spark_basic
-ctithead2 basic hbase_basic storm_basic kafka_basic pig_basic spark_basic
+System	  Classes
+------	  -------
+ctit001	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit002	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit003	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit004	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit005	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit006	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit007	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit008	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit009	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit010	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit011	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit012	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit013	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit014	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit015	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit016	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit017	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit018	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit019	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit020	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit021	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit022	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit023	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit024	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit025	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit026	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit027	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit028	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit029	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit030	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit031	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit032	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic                                hbase/basic        spark/basic
+ctit033	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit034	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit035	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit036	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit037	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit038	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit039	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit040	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit041	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit042	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit043	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit044	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit045	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit046	  base hdfs/datanode                         yarn/nodemanager     zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit047	  base hdfs/datanode hdfs/secondary_namenode yarn/nodemanager	  zookeeper/basic  kafka/server storm/supervisor hbase/regionserver spark/basic
+ctit048	  base hdfs/namenode                         yarn/resourcemanager zookeeper/server              storm/nimbus     hbase/master       spark/master
+ctithead1 base hdfs/basic                                                 zookeeper/basic  kafka/basic  storm/basic      hbase/basic        spark/basic   pig/basic
+ctithead2 base hdfs/basic                                                 zookeeper/basic  kafka/basic  storm/basic      hbase/basic        spark/basic   pig/basic

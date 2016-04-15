@@ -5,9 +5,8 @@
     export REALM=FARM.UTWENTE.NL
     export CENTRALNODE=farm02
     export HOST=$(hostname)
-    export KEYSTOREPASSWORD=
-    export PUBLICPASS=
-    export KEYPASSWORD=
+    export PUBLICPASS=<path to file keypassword>
+    export KEYPASSWORD=<path to file publicpass>
 
 ## Install Hadoop Client
 In the basic installation only install hadoop -client

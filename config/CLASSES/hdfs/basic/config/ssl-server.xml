@@ -50,6 +50,7 @@ https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infos
   </description>
 </property>
 
+<!-- Password for keystore -->
 <property>
   <name>ssl.server.keystore.location</name>
   <value>/etc/hadoop/conf/$HOST.ewi.utwente.nl.jks</value>
@@ -58,17 +59,10 @@ https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infos
 </property>
 
 <property>
-  <name>ssl.server.keystore.keypassword</name>
+  <name>ssl.server.keystore.password</name>
   <value>$KEYPASSWORD</value>
   <description>Must be specified.</description>
 </property>
-
-<property>
-  <name>ssl.server.keystore.password</name>
-  <value>$KEYSTOREPASSWORD</value>
-  <description>Must be specified.</description>
-</property>
-
 
 <property>
   <name>ssl.server.keystore.type</name>
@@ -77,4 +71,10 @@ https://www-01.ibm.com/support/knowledgecenter/SSPT3X_4.1.0/com.ibm.swg.im.infos
   </description>
 </property>
 
+<!-- Password for key inside keystore --> 
+<property>
+  <name>ssl.server.keystore.keypassword</name>
+  <value>$KEYPASSWORD</value>
+  <description>Must be specified.</description>
+</property>
 </configuration>

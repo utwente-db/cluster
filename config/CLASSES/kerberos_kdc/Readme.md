@@ -89,9 +89,8 @@ Create principals and export keytabs
     chmod 0400 keypassword
   
     openssl rand -base64 32 > publicpass
+    chmod 0400 publicpass
     
-    openssl rand -base64 10 > shortpass
-    chmod 0400 shortpass publicpass
     
     # Create Keys
     for i in $(seq 1 9); do H=$(printf "farm%02d" $i); openssl genrsa -passout file:keypassword -out $H.ewi.utwente.nl.key 2048; done
@@ -111,6 +110,9 @@ Once the certificates are signed by ICTS, copy them into $SAFE:
     rm ~dbeheer/$(hostname)_ewi_utwente_nl*.zip
     cp $(hostname)_ewi_utwente_nl*/*p7b .
     rm -rf $(hostname)_ewi_utwente_nl_*
+    
+    openssl rand -base64 10 > shortpass
+    chmod 0400 shortpass
     
     for i in $(seq 1 48); do
       export HOST=$(printf "ctit%03d" $i)
@@ -136,4 +138,6 @@ Once the certificates are signed by ICTS, copy them into $SAFE:
       keytool -import -trustcacerts -storepass:file publicpass -alias $host -noprompt -file $host.crt -keystore $REALM.jks
       # debugging keytool -list -storepass:file publicpass -keystore $REALM.jks 
     done
+    
+    rm shortpass
 

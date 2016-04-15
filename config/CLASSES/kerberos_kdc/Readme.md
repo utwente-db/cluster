@@ -67,15 +67,15 @@ Create principals and export keytabs
       kadmin.local -r $REALM -q "addprinc -randkey yarn/$FQN@$REALM"
       kadmin.local -r $REALM -q "addprinc -randkey HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "addprinc -randkey hbase/$FQN@$REALM"
-      kadmin.local -r $REALM -q "addprinc -randkey zookeeper/$HOST@$REALM"
-      kadmin.local -r $REALM -q "addprinc -randkey hbase/$HOST@$REALM"
+      kadmin.local -r $REALM -q "addprinc -randkey zookeeper/$FQN@$REALM"
+      kadmin.local -r $REALM -q "addprinc -randkey hbase/$FQN@$REALM"
       
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hdfs.keytab hdfs/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.mapred.keytab mapred/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.yarn.keytab mapred/$FQN@$REALM yarn/$FQN@$REALM HTTP/$FQN@$REALM"
       kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab hbase/$FQN@$REALM"
-      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.zookeeper.keytab zookeeper/$HOST"
-      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab zookeeper/$HOST"
+      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.zookeeper.keytab zookeeper/$FQN"
+      kadmin.local -r $REALM -q "xst -norandkey -k $FQN.hbase.keytab zookeeper/$FQN"
     done
 
 ### HTTPs Configuration

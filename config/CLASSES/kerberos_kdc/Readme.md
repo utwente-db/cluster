@@ -31,7 +31,7 @@ Adapt Configuration
 
 Create Realm Database 
 
-    kdb5_util create -s -r $REALM
+    kdb5_util create -s -r $REALM -P $TRUSTPASSWORD
     <enter realm password by hand> 
     
 Start KDC Services
@@ -43,8 +43,7 @@ Start KDC Services
 
 To create a trust relationship with AD domain:
 
-    kinit kadmin/admin@$REALM
-    kadmin.local -r $REALM -q "addprinc -e "aes256-cts:normal" krbtgt/$REALM@AD.UTWENTE.NL"
+    kadmin.local -r $REALM -q "addprinc -pw $TRUSTPASSWORD -e "aes256-cts:normal" krbtgt/$REALM@AD.UTWENTE.NL"
     <enter trust password twice>
 
 ## Administration
@@ -53,12 +52,10 @@ To create a trust relationship with AD domain:
 Create principals and export keytabs
 <on kdc server>
   
-    mkdir $SAFE
+    mkdir -p $SAFE
     chmod 0700 $SAFE
+    cd $SAFE
   
-    kinit -r $REALM -p kadmin/admin@$REALM
-    <enter new password>
-      
     # for each host 
     # Foreach node do the following 
     for i in $(seq 1 9); do

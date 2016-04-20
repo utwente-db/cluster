@@ -12,6 +12,7 @@
     apt-get --yes install python-software-properties
     apt-get --yes install curl
     apt-get --yes install maven
+    apt-get --yes install hadoop-client
   
 ## Install Java7
 

@@ -24,7 +24,7 @@
   </property>
   <property>
      <name>dfs.data.dir</name>
-     <value>file://local/hadoop/dfs/data</value>
+     <value>/local/hadoop/dfs/data</value>
   </property>
   <property>
     <name>dfs.namenode.http-address</name>

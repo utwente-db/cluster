@@ -65,8 +65,8 @@ On the first run do.
     # become root
     kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$(hostname).ewi.utwente.nl@$REALM
     
-    hdfs -mkdir /tmp
-    hdfs -chmod -R 1777 /tmp
-    hdfs -mkdir -p /user/history
-    hdfs -chmod -R 1777 /user/history
-    hdfs -chown mapred:hadoop /user/history
+    hdfs dfs -mkdir /tmp
+    hdfs dfs -chmod -R 1777 /tmp
+    hdfs dfs -mkdir -p /user/history
+    hdfs dfs -chmod -R 1777 /user/history
+    hdfs dfs -chown mapred:hadoop /user/history

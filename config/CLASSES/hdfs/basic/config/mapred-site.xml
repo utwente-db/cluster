@@ -69,6 +69,6 @@
         </property>	
         <property>
           <name>mapreduce.jobhistory.principal</name>	
-          <value>mapred/_HOST@YOUR-REALM.COM</value>
+          <value>mapred/_HOST@$REALM</value>
         </property>
 </configuration>

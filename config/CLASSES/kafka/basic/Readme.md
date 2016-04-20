@@ -20,7 +20,7 @@ REPLACE the following variables
     chown -R hdfs /var/log/kafka
 
     # create dummy log directory so that start script doesn't complain
-    mkdir -p /usr/lib/kafka/log
+    mkdir -p /usr/lib/kafka/logs
     
     Add PATHS and ALIASES variables to
     cat ./PATH_AND_ALIASES >> /etc/bash.bashrc

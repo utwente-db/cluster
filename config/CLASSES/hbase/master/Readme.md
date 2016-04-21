@@ -11,10 +11,16 @@
 ## Installation
   sudo apt-get install hbase-master
 
-  # become root
-  kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$CENTRALNODE.ewi.utwente.nl@FARM.UTWENTE.NL
+  # become hbase-root user 'hbase'
+  kinit -kt /etc/hadoop/conf/hdfs.keytab hdfs/$CENTRALNODE.ewi.utwente.nl@$REALM
   
+  # create hbase's base directory
   hadoop fs -mkdir /hbase
   hadoop fs -chown hbase /hbase
 
   service hbase-master start
+  
+  # setup testing namespace with full rights for 'alyr'
+  echo "create_namespace 'test'" | hbase shell
+  # grant all rights to testing user on namespace 'test'
+  echo "grant 'alyr', 'RWXCA', '@test'"

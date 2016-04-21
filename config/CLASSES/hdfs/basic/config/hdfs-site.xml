@@ -18,9 +18,11 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration>
+  
+  <!-- For an explanation of property values, see: -->
   <property>
      <name>dfs.name.dir</name>
-     <value>file:///var/lib/hadoop-hdfs/cache/hdfs/dfs/name</value>
+     <value>file:///local/hadoop/dfs/namenode</value>
   </property>
   <property>
      <name>dfs.data.dir</name>
@@ -38,8 +40,7 @@
      <value>/local/hadoop/dfs/checkpoints</value>
   </property>
   <!-- text file to list the data nodes that should be decommissioned. 
-  See, e.g. 
-  http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.3.7/bk_hdp1-system-admin-guide/content/admin_decommission-slave-nodes-2-1.html
+  See, e.g. http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.3.7/bk_hdp1-system-admin-guide/content/admin_decommission-slave-nodes-2-1.html
   -->
   <property>
     <name>dfs.hosts.exclude</name>

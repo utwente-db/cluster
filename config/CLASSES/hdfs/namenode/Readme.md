@@ -17,8 +17,8 @@
     apt-get --yes install hadoop-hdfs-namenode=2.3.0+cdh5.1.2+816-1.cdh5.1.2.p0.3~precise-cdh5.1.2
     
     # name node data directory
-    mkdir -p /var/lib/hadoop-hdfs/cache/hdfs/dfs/name
-    chown -R hdfs /var/lib/hadoop-hdfs
+    mkdir -p /local/hadoop/dfs/namenode
+    chown -R hdfs /local/hadoop/dfs/namenode
 
     cd $SAFE 
     # Copy Keytabs

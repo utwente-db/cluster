@@ -39,6 +39,10 @@ By default java has restricted encryption strength. Copy security jar file for s
 
 Note: keep jce_policy.zip at a save place.
 
+## extra file yarn-env.sh
+
+Copy config/yarn-env.sh to /etc/hadoop/conf/yarn-env.sh
+
 ## Kerberos Configuration
 
 Copy the two kerberos configuration files, one for clients putting AD.UTWENTE.NL as default realm and one for services, putting the FARM.UTWENTE.NL or CTIT.UTWENTE.NL as default. 

@@ -1,7 +1,7 @@
 echo "HBase"
 echo "------------------"
 echo "This script explains the base commands for using hbase."
-TABLE=test:test-$RANDOM
+TABLE=$USER:test-$RANDOM
 echo "==="
 echo "To create a table"
 echo "create '$TABLE', 'test'" | hbase shell

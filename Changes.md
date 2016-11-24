@@ -1,3 +1,32 @@
+# November 24th 2016
+
+* Moved yarn directories for caches and logs to /local to prevent / to fill up
+* Added new spark version 2.0.2
+* Added configuration to make spark dynamically allocate resources
+
+Changes boil down to:
+  # Move the logs to bigger partition (only on nodemanagers) (CLASSES/yarn/nodemanager/Readme.md)
+  mkdir -p /local/hadoop/yarn/nm-local-dir
+  mkdir -p /local/hadoop/yarn/container-logs
+  chown -R yarn /local/hadoop/yarn
+  # copy yarn configuration (on all machines) 
+  cp ~dbeheer/cluster/config/CLASSES/hdfs/basic/config/yarn-site.xml /etc/hadoop/conf
+  # copy spark installation (keeping the old one) (CLASSES/spark/master/Readme.md)
+  export VERSION=2.0.2
+  cp -r ~dbeheer/spark-$VERSION* /usr/lib/
+  
+  # copy spark configuration (CLASSES/spark/basic/config/spark-defaults.conf and CLASSES/spark/master/Readme.md)
+  cp ~dbeheer/cluster/config/CLASSES/spark/basic/config/* /usr/lib/spark-$VERSION*/conf/
+  # permanently set variables paths 
+  export SPARK_HOME=/usr/lib/spark-$VERSION-*
+  export PATH=$SPARK_HOME/bin:$PATH
+
+  # on node manager
+  /etc/init.d/hadoop-yarn-nodemanager restart
+
+  # on node manager
+  /etc/init.d/hadoop-yarn-nodemanager restart
+
 # March 17th 2016
 
 * Grouped server classes under software package (storm_nimbus => storm/nimbus etc)

@@ -17,11 +17,10 @@ remove old version
 
 download newest version of spark
 
-    VERSION=1.6.0
+    VERSION=2.0.2
     wget http://d3kbcqa49mib13.cloudfront.net/spark-$VERSION-bin-hadoop2.6.tgz
     tar xvzp -f spark-$VERSION-bin-hadoop2.6.tgz
-    mv spark-$VERSION-bin-hadoop2.6.tgz /usr/lib/spark
-    rm spark-$VERSION-bin-hadoop2.6.tgz
+    cp -r spark-$VERSION-bin-hadoop2.6 /usr/lib/
 
 copy configuration 
 
@@ -30,19 +29,10 @@ copy configuration
 Add Global Variables
 
     export HADOOP_CONF_DIR=/etc/hadoop/conf
-    export PATH=/usr/lib/spark/bin:$PATH
-    
-## Configure Dynamic Resource Allocation in Yarn
+    export SPARK_HOME=/usr/lib/spark-$VERSION-*
+    export PATH=$SPARK_HOME/bin:$PATH
 
-Copy schduler to Yarn Classpath
-
-    cp /usr/lib/spark/lib/spark-*-yarn-shuffle.jar /usr/lib/hadoop/lib/
-
-Add 
-
-copy the `config-yarn/yarn.site` from settings to `/etc/hadoop/conf/`    
-
-Restart the `ResourceManager` and all `NodeManagers`.
+## Restart the `ResourceManager` and all `NodeManagers`.
 
     # on nodes of class yarn/resourcemanager
     /etc/init.d/hadoop-yarn-resourcemanager restart
@@ -52,4 +42,4 @@ Restart the `ResourceManager` and all `NodeManagers`.
 
 ## Testing script
 
-./bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster --num-executors 3 --driver-memory 4g --executor-memory 2g --executor-cores 1  --queue thequeue lib/spark-examples*.jar 10
+$SPARK_HOME./bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster --queue thequeue lib/spark-examples*.jar 10

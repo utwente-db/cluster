@@ -8,22 +8,22 @@
 
 Changes boil down to:
 
-  # Move the logs to bigger partition (only on nodemanagers) (CLASSES/yarn/nodemanager/Readme.md)
-  mkdir -p /local/hadoop/yarn/nm-local-dir
-  mkdir -p /local/hadoop/yarn/container-logs
-  chown -R yarn /local/hadoop/yarn
-  # copy yarn configuration (on all machines, i.e yarn basic, nodemanager, and resource managers) 
-  # replace variables!
-  cp ~dbeheer/cluster/config/CLASSES/hdfs/basic/config/* /etc/hadoop/conf
-  # copy spark configuration (on all machines, i.e yarn basic, nodemanager, and resource managers) 
-  # replace variables!
-  cp ~dbeheer/cluster/config/CLASSES/spark/basic/config/* /usr/lib/spark-$VERSION*/conf/
+    # Move the logs to bigger partition (only on nodemanagers) (CLASSES/yarn/nodemanager/Readme.md)
+    mkdir -p /local/hadoop/yarn/nm-local-dir
+    mkdir -p /local/hadoop/yarn/container-logs
+    chown -R yarn /local/hadoop/yarn
+    # copy yarn configuration (on all machines, i.e yarn basic, nodemanager, and resource managers) 
+    # replace variables!
+    cp ~dbeheer/cluster/config/CLASSES/hdfs/basic/config/* /etc/hadoop/conf
+    # copy spark configuration (on all machines, i.e yarn basic, nodemanager, and resource managers) 
+    # replace variables!
+    cp ~dbeheer/cluster/config/CLASSES/spark/basic/config/* /usr/lib/spark-$VERSION*/conf/
 
-  # on node manager
-  /etc/init.d/hadoop-yarn-nodemanager restart
+    # on node managers
+    /etc/init.d/hadoop-yarn-nodemanager restart
 
-  # on node manager
-  /etc/init.d/hadoop-yarn-nodemanager restart
+    # on node manager
+    /etc/init.d/hadoop-yarn-nodemanager restart
 
 # March 17th 2016
 

@@ -6,8 +6,9 @@
 
 ## Preparation
 Install Scala
-
-    apt-get install scala
+    wget www.scala-lang.org/files/archive/scala-2.11.7.deb
+    dpkg -i scala-2.11.7.deb
+    #apt-get install scala
 
 remove old version
 

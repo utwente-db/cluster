@@ -32,7 +32,7 @@
     <name>yarn.scheduler.fair.preemption</name>
     <value>true</value>
   </property>
-
+ 
   <property>
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle,spark_shuffle</value>
@@ -80,7 +80,7 @@
         $HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,
         $HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,
         $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,
-        $SPARK_HOME/yarn/*
+        $SPARK_HOME/yarn/*,$SPARK_HOME/lib/*
      </value>
   </property>  
   <!-- text file to list the node manager that should be decommissioned. 
@@ -99,7 +99,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.principal</name>	
-    <value>yarn/_HOST@FARM.UTWENTE.NL</value>
+    <value>yarn/_HOST@$REALM</value>
   </property>
 
   <!-- NodeManager security configs -->
@@ -109,7 +109,7 @@
   </property>
   <property>
     <name>yarn.nodemanager.principal</name>	
-    <value>yarn/_HOST@FARM.UTWENTE.NL</value>
+    <value>yarn/_HOST@$REALM</value>
   </property>	
   <property>
     <name>yarn.nodemanager.container-executor.class</name>	

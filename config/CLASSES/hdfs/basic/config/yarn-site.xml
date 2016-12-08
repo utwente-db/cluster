@@ -72,6 +72,18 @@
   </property>
 
   <property>
+    <description>yarn.nodemanager.resource.memory-mb</description>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>32768</value>
+  </property>
+
+  <property>
+    <description>yarn.nodemanager.resource.cpu-vcores</description>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>12</value>
+  </property>
+
+  <property>
     <description>Classpath for typical applications.</description>
      <name>yarn.application.classpath</name>
      <value>

@@ -67,4 +67,57 @@
 # - SPARK_PID_DIR       Where the pid file is stored. (Default: /tmp)
 # - SPARK_IDENT_STRING  A string representing this instance of spark. (Default: $USER)
 # - SPARK_NICENESS      The scheduling priority for daemons. (Default: 0)
+
+###
+### === IMPORTANT ===
+### Change the following to specify a real cluster's Master host
+###
+export STANDALONE_SPARK_MASTER_HOST=`hostname`
+
+export SPARK_MASTER_IP=$STANDALONE_SPARK_MASTER_HOST
+
+### Let's run everything with JVM runtime, instead of Scala
+export SPARK_LAUNCH_WITH_SCALA=0
+export SPARK_LIBRARY_PATH=${SPARK_HOME}/lib
+export SPARK_MASTER_WEBUI_PORT=18080
+export SPARK_MASTER_PORT=7077
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=18081
+export SPARK_WORKER_DIR=/var/run/spark/work
+export SPARK_LOG_DIR=/var/log/spark
+export SPARK_PID_DIR='/var/run/spark/'
+
+if [ -n "$HADOOP_HOME" ]; then
+  export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib64/libfakeroot:/usr/lib32/libfakeroot:/usr/lib/hadoop/lib/native
+fi
+
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
+
+if [[ -d $SPARK_HOME/python ]]
+then
+    for i in 
+    do
+        SPARK_DIST_CLASSPATH=${SPARK_DIST_CLASSPATH}:$i
+    done
+fi
+
+SPARK_CLASSPATH="$SPARK_CLASSPATH:$SPARK_LIBRARY_PATH/spark-assembly.jar"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-hdfs/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-hdfs/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-mapreduce/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-mapreduce/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-yarn/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hadoop-yarn/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/hive/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/flume-ng/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/parquet/lib/*"
+SPARK_CLASSPATH="$SPARK_CLASSPATH:/usr/lib/avro/lib/*"
+
 export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Djava.security.auth.login.config=/etc/hbase/conf/zk-jaas.conf -Djava.security.krb5.conf=/etc/krb5.service.conf"
+
+export SPARK_HISTORY_OPTS=-Dspark.history.kerberos.enabled=true \
+-Dspark.history.kerberos.principal=spark/$CENTRALNODE.ewi.utwente.nl@CTIT-KRB.UTWENTE.NL \
+-Dspark.history.kerberos.keytab=/etc/spark/conf/spark.keytab

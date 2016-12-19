@@ -22,6 +22,8 @@ download newest version of spark
     wget http://d3kbcqa49mib13.cloudfront.net/spark-$VERSION-bin-hadoop2.6.tgz
     tar xvzp -f spark-$VERSION-bin-hadoop2.6.tgz
     cp -r spark-$VERSION-bin-hadoop2.6 /usr/lib/
+    
+    cp -av ~dbeheer/safe/$FQN.spark.keytab /etc/spark/conf/spark.keytab
 
 copy configuration 
 
@@ -40,6 +42,8 @@ Add Global Variables
     
     # on nodes of class yarn/nodemanager
     /etc/init.d/hadoop-yarn-nodemanager restart
+    
+
 
 ## Testing script
 

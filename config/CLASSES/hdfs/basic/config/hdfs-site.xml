@@ -39,6 +39,7 @@
      <name>dfs.namenode.checkpoint.dir</name>
      <value>/local/hadoop/dfs/checkpoints</value>
   </property>
+  
   <!-- text file to list the data nodes that should be decommissioned. 
   See, e.g. http://docs.hortonworks.com/HDPDocuments/HDP1/HDP-1.3.7/bk_hdp1-system-admin-guide/content/admin_decommission-slave-nodes-2-1.html
   -->
@@ -75,6 +76,10 @@
   <property>
     <name>dfs.secondary.namenode.kerberos.principal</name>
     <value>hdfs/_HOST@$REALM</value>
+  </property>
+  <property>
+    <name>dfs.secondary.namenode.kerberos.http.principal</name>
+    <value>HTTP/_HOST@CTIT-KRB.UTWENTE.NL</value>
   </property>
   <property>
     <name>dfs.secondary.namenode.kerberos.internal.spnego.principal</name>

@@ -14,7 +14,7 @@
     apt-get --yes install maven
     apt-get --yes install hadoop-client
   
-## Install Java7
+## Install Java8
 
     add-apt-repository -y ppa:webupd8team/java
     apt-get update 
@@ -39,9 +39,6 @@ By default java has restricted encryption strength. Copy security jar file for s
 
 Note: keep jce_policy.zip at a save place.
 
-## extra file yarn-env.sh
-
-Copy config/yarn-env.sh to /etc/hadoop/conf/yarn-env.sh
 
 ## Kerberos Configuration
 

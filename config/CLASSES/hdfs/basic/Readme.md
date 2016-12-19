@@ -15,6 +15,10 @@ Moved the hadoop-client install to base class. The hadoop user is needed earlier
 
     #apt-get --yes install hadoop-client=2.3.0+cdh5.1.2+816-1.cdh5.1.2.p0.3~precise-cdh5.1.2
 
+## extra file yarn-env.sh
+
+Copy config/yarn-env.sh to /etc/hadoop/conf/yarn-env.sh
+
 # now copy the config files for hadoop to the correct location
 
     shadow.py config/ /etc/hadoop/conf/

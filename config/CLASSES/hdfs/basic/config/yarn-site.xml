@@ -28,10 +28,13 @@
     <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
   </property>
   
+  <!-- 
+  Experimental functionality to kill nodes
   <property>
     <name>yarn.scheduler.fair.preemption</name>
     <value>true</value>
-  </property>
+  </property> 
+  -->
  
   <property>
     <name>yarn.nodemanager.aux-services</name>
@@ -144,7 +147,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.https.address</name>
-    <value>$CENTRALNODE.ewi.utwente.nl:8088</value>
+    <value>ctit048.ewi.utwente.nl:8088</value>
   </property>
   <property>
     <name>yarn.nodemanager.webapp.https.address</name>

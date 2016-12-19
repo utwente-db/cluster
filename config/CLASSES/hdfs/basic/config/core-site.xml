@@ -47,8 +47,21 @@
         </property>
         
         
+        <!-- Allow yarn to prolong kerberos tickets 
+             see https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cm_sg_yarn_long_jobs.html
+          -->
+        <property>
+                <name>hadoop.proxyuser.yarn.hosts</name>
+                <value>*</value>
+        </property>
+
+        <property>
+                <name>hadoop.proxyuser.yarn.groups</name>
+                <value>*</value>
+        </property>
+        
         <!-- 
-          
+          ssl configuration
         -->
         <property>
                <name>hadoop.ssl.require.client.cert</name>

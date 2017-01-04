@@ -8,3 +8,5 @@
 # The java implementation to use.  Required.
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.security.krb5.conf=/etc/krb5.service.conf"
+# set the linker library variable to use native implementation of hadoop operations
+export LD_LIBRARY_PATH=/usr/lib/hadoop/lib/native:$LD_LIBRARY_PATH

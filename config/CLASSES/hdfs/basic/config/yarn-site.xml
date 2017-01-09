@@ -143,15 +143,17 @@
   
   <property>
     <name>yarn.log.server.url</name>
-    <value>https://$CENTRALNODE.ewi.utwente.nl:19888/jobhistory/logs</value>
+    <value>http://$CENTRALNODE.ewi.utwente.nl:19888/jobhistory/logs</value>
   </property>
-  <property>
+
+  <!-- commented out because we not using https -->
+  <!-- <property>
     <name>yarn.resourcemanager.webapp.https.address</name>
     <value>ctit048.ewi.utwente.nl:8088</value>
   </property>
   <property>
     <name>yarn.nodemanager.webapp.https.address</name>
     <value>0.0.0.0:8042</value>
-  </property>
+  </property> -->
 
 </configuration>

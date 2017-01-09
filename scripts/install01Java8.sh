@@ -5,8 +5,8 @@ if [ ! -f "$FILE" ]; then
   apt-get update && apt-get --yes --no-install-recommends install software-properties-common
   add-apt-repository -y ppa:webupd8team/java 
   (
-  echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" 
-  echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main"
+  echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" 
+  echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main"
   ) > /etc/apt/sources.list.d/java8.list
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections

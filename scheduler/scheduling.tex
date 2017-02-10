@@ -1,0 +1,142 @@
+
+\documentclass{article}
+
+\title{Scheduler requirements for the CTIT cluster.}
+\author{Stefan Blom}
+
+\begin{document}
+
+\maketitle
+
+\section{Workloads}
+
+\begin{itemize}
+\item A big part of the cluster is a hadoop cluster that thus has to run the
+HDFS daemons 24/7 and where work has to be scheduled by Yarn.
+\item HPC jobs that require GPU access, infiniband access, and/or exclusive access
+should be scheduled by an HPC scheduler, such as SLURM.
+\item Benchmarking jobs require exclusive access to hardware in order
+to produce reliable performance analysis. Any interference by other workloads is problematic.
+\item There is also a lot of basic work where only the end result matters and that can run 
+anywhere at any time. The problem here is scheduling these jobs efficiently.
+Especially the ones that have short duration.
+\end{itemize}
+
+
+
+\section{Steps to be taken.}
+
+\subsection{Set up fair share scheduling and jobs accounting.}
+
+It is not nice that a single 5 minute job has to wait for a week worth
+of other 5 minute jobs. This can be resolved by fair share scheduling.
+
+To get a good idea of how much the resources are actually used,
+it is good to set up logging to show who used up how much time on which machine.
+
+This can also help to determine how generous we can be to
+research groups that did not contribute to the cluster.
+
+\subsection{To develop software on precious machines.}
+
+We have only one machine with 96 cores and only one with P100 GPUs.
+Waiting for other peoples' jobs to complete makes the compile-test-try-again
+cycle very time consuming. Under the assumption that there are not be enough
+jobs that must use those machines to keep them fully occupied, the easy solution
+is to let users create reservations in SLURM that allow those users exclusive
+access to (parts of) those machines at a pre-determined times.
+
+
+\subsection{Using the BSR R730s for benchmarking.}
+
+\begin{itemize}
+\item Pin the HDFS daemon to CPU1.
+\item Pin Yarn on CPU1, or switch off completely.
+\item Make an exclusive reservation for CPU1 and pin the benchmarked job
+on CPU1.
+\end{itemize}
+
+The Infiniband cards in these machines are attached to CPU2, while the
+RAID controller and on-board ethernet are connected to CPU1. Hence,
+interference between the HDFS daemons and the benchmark job are minimal.
+
+
+\subsection{Accessing the Xeon Phis in everloo}
+
+Regardless of which OS runs on the CPUs and what tasks the CPUS perform, the Xeon $\Phi$ cards
+run their own minimal Linux operating system and can be scheduled using SLURM as separate machines.
+
+\subsection{Static vs dynamic sharing of resources between Yarn and SLURM}
+
+Two partitions have to be shared between Yarn and SLURM:
+\begin{itemize}
+\item The 32x R415 partition.
+\item The 8x R730 partition.
+\end{itemize}
+
+Sharing the resources statically between Yarn and SLURM is easy to configure,
+but leaves both Hadoop and SLURM incapable of exploiting all resources at once.
+This can hurt for big SPARK/Yarn jobs and MPI/SLURM jobs.
+
+To get around this, all resources can be assigned to the SLURM scheduler and
+Yarn can be started as a SLURM application. If nodes are off-line for a long time,
+then removing them from the scheduler configuration migth make sense, but in principle
+the scheduler will work just fine if nodes are offline. More difficult is that
+people who run long-duration Hadoop jobs have to be very careful: their application master
+must be started on a rack that will remain allocated for the duration
+of their jobs. Moreover, the workers mu either be crash-proof or started on a rack that
+will remain allocated.
+
+
+\subsection{Scheduling micro jobs.}
+
+A micro job is a job that uses just a few cores and not much time.
+
+In principle Yarn is built for this kind of jobs.
+Likewise, SLURM has lots of free time in between big jobs that
+can be used for these jobs.
+
+There are, however, problems with this:
+\begin{itemize}
+\item With resources divided between the two schedulers, the user
+does not really know where to submit how many micro jobs.
+\item To provide proper protection SLURM may be forced to assign
+resources at socket granularity, much more than a micro jobs requires.
+\item The SLURM scheduler run in intervals measured in minutes.
+That is not very efficient for jobs measured in (micro)seconds.
+\end{itemize}
+
+A possible solution is to put a GRID scheduler in front of
+the Yarn and SLURM schedulers. We would have to find or build
+one that could do the following:
+\begin{itemize}
+\item Cooperate with SLURM and YARN to acquire and release resources.
+\item Cooperate with other users micro schedulers to fairly distribute
+resources.
+\item Take advantage of temporary resources, such as workstations that 
+provide their resources overnight and in the weekends (or any other idle time).
+\item Persist if the server it is running on crashes.
+\end{itemize}
+
+Because redistributing resources between Yarn and SLURM has consequences,
+and thus should be done on a week-by-week basis, a micro scheduler can help
+by putting most of its load on the scheduler that is least busy. It can also
+help the SLURM scheduler by releasing assigend resources early, if that
+those particular resources are blocking the executation of a big job.
+It could also look at idle resource due to a pending big jobs and request
+precisely those idle resources.
+
+\appendix
+
+\section{Terminology}
+
+\begin{description}
+\item[rack] Hadoop speak for a group of machines that is meant to work together closely.
+Typically machines of the same type and possibly connected to a high bandwidth network.
+\item[partition] HPC speak for a group of identical machinesthat typically is connected
+to a high bandwidth network.
+\end{description}
+
+\end{document}
+
+

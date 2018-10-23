@@ -5,7 +5,8 @@
     export REALM=CTIT-KRB.UTWENTE.NL
     export CENTRALNODE=farm02
     export HOST=$(hostname)
-    export SPARK_VERSION=1.6.0-cdh5.9.0
+    # export SPARK_VERSION=1.6.0-cdh5.9.0
+    export SPARK_VERSION=2.2.0-cdh5.9.0
     
 
 ## Required Classes
@@ -33,6 +34,6 @@ each spark version update.
 <on central node>
   
     # Become spark user
-    kinit -kt /etc/spark/conf/spark.keytab spark/$CENTRALNODE.ewi.utwente.nl@$REALM
-    hdfs dfs -put /usr/lib/spark/lib/spark-assembly.jar /user/spark/share/lib/spark-assembly-${SPARK_VERSION}.jar
+    # DEPRICATED kinit -kt /etc/spark/conf/spark.keytab spark/$CENTRALNODE.ewi.utwente.nl@$REALM
+    # DEPRICATED hdfs dfs -put /usr/lib/spark/lib/spark-assembly.jar /user/spark/share/lib/spark-assembly-${SPARK_VERSION}.jar
     

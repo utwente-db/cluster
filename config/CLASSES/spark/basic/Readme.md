@@ -18,7 +18,8 @@ remove old version
 
 download newest version of spark
 
-    VERSION=2.0.2
+    # VERSION=2.0.2 OLD version
+    VERSION=2.2.0
     wget http://d3kbcqa49mib13.cloudfront.net/spark-$VERSION-bin-hadoop2.6.tgz
     tar xvzp -f spark-$VERSION-bin-hadoop2.6.tgz
     cp -r spark-$VERSION-bin-hadoop2.6 /usr/lib/
